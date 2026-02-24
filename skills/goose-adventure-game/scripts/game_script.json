@@ -1,0 +1,805 @@
+{
+  "game_info": {
+    "title": "尼尔斯骑鹅旅行记",
+    "version": "1.0",
+    "author": "Based on Selma Lagerlöf's classic novel",
+    "description": "一个关于成长、勇气和善良的冒险故事"
+  },
+  "endings": [
+    {
+      "id": "perfect_ending",
+      "title": "✨ 完美结局：真正的英雄 ✨",
+      "description": "你不仅变回了原来的样子，更重要的是，你学会了关爱生命、承担责任。你的善良感动了所有人，莫顿的伤势完全康复，你成为了动物们的朋友。这段旅程让你从一个顽皮的男孩成长为一个真正的男子汉。",
+      "requirements": {"morality_min": 70, "flag": ["saved_morten", true]}
+    },
+    {
+      "id": "good_ending",
+      "title": "🌟 良好结局：成长的代价 🌟",
+      "description": "你终于回到了家，变回了原来的样子。虽然在旅途中有些自私的选择让你失去了一些机会，但你还是学到了宝贵的教训。你明白了每个生命都值得尊重，这已经是一个很好的开始。",
+      "requirements": {"morality_min": 40}
+    },
+    {
+      "id": "normal_ending",
+      "title": "📖 普通结局：未完的旅程 📖",
+      "description": "旅程结束了，但你似乎还没有完全明白其中的意义。虽然你变回了原来的样子，但那些关于善良和责任的课程，还需要更多的时间来体会。也许下次，你会做得更好。"
+    },
+    {
+      "id": "bad_ending",
+      "title": "💔 遗憾结局：失去的机会 💔",
+      "description": "因为太多的自私选择，你失去了一些珍贵的机会。虽然变回了原来的样子，但你心中总觉得少了些什么。那些曾经帮助过你的动物，你再也没有见过。希望你能从中学到什么。",
+      "requirements": {"morality_max": 30}
+    },
+    {
+      "id": "morten_death_ending",
+      "title": "🕊️ 悲伤结局：永别的悲伤 🕊️",
+      "description": "莫顿因为你的自私而永远地离开了。当他的翅膀不再扇动，当他的眼睛永远闭上时，你终于明白了生命的珍贵。但这个教训来得太晚了...带着悔恨，你回到了家，但心中永远留着一个空洞。",
+      "requirements": {"flag": ["morten_dead", true]}
+    }
+  ],
+  "scenes": [
+    {
+      "id": "start",
+      "chapter": 0,
+      "title": "🎮 新游戏开始",
+      "description": "欢迎来到《尼尔斯骑鹅旅行记》文字冒险游戏！\n\n这是一个关于成长、勇气和善良的故事。你将扮演尼尔斯，一个顽皮的14岁男孩，因为不尊重生命而被小精灵变小，随后开始了一段骑着白鹅莫顿横跨瑞典的奇妙旅程。\n\n📖 游戏特色：\n• 你的每个选择都会影响故事走向\n• 道德值决定你能否获得完美结局\n• 知识值记录你在旅途中学习到的地理和自然知识\n• 收集成就，解锁隐藏内容\n• 多种结局，等你探索\n\n🎯 游戏目标：\n通过这次旅程，学会关爱生命、承担责任，最终成长为一个真正的男子汉。\n\n准备好开始你的冒险了吗？",
+      "choices": [
+        {"text": "🚀 开始游戏", "next_scene": "chapter1_intro"},
+        {"text": "📚 查看游戏指南", "next_scene": "tutorial"},
+        {"text": "🏆 查看成就列表", "next_scene": "achievements_list"}
+      ],
+      "narrator": "friendly",
+      "music": "peaceful"
+    },
+    {
+      "id": "tutorial",
+      "title": "📖 游戏指南",
+      "description": "🎮 如何游玩：\n\n1️⃣ 阅读每个场景的描述\n2️⃣ 从给出的选项中做出选择\n3️⃣ 你的选择会影响：\n   • 故事的发展方向\n   • 道德值（决定结局）\n   • 知识值（记录学习成果）\n   • 物品和成就\n\n📊 状态系统：\n\n❤️ 生命值 (HP)\n   代表你的健康状况，某些危险选择会减少生命值\n\n💖 道德值 (Morality)\n   最重要！决定你能达成哪个结局\n   高道德值 = 善良、勇敢的选择\n   低道德值 = 自私、懦弱的选择\n\n📏 大小值 (Size)\n   0 = 拇指大小，100 = 正常大小\n   游戏开始时你会被变小\n\n🧠 知识值 (Knowledge)\n   记录你学到的地理和自然知识\n\n💡 小贴士：\n• 关爱动物 = 高道德值\n• 帮助他人 = 高道德值\n• 学习探索 = 获得知识\n• 仔细观察 = 发现隐藏选项\n\n准备好了吗？",
+      "choices": [
+        {"text": "🔙 返回", "next_scene": "start"}
+      ]
+    },
+    {
+      "id": "achievements_list",
+      "title": "🏆 成就列表",
+      "description": "🌟 成就系统 🌟\n\n完成特定任务可解锁成就：\n\n🥚 初章：变小的人\n   完成第一章\n\n🕊️ 翅膀的守护者\n   在关键场景救下莫顿\n\n🦊 狐狸的死敌\n   帮助狐狸袭击下的雁群\n\n👑 领袖的魅力\n   成功带领动物们解决危机\n\n🌍 自然观察者\n   知识值达到100\n\n📚 小小博物学家\n   知识值达到300\n\n🗺️ 地理大师\n   知识值达到500\n\n⭐ 智慧之星\n   知识值达到800\n\n💖 善良之心\n   道德值达到80\n\n🦸‍♂️ 真正的勇者\n   达成完美结局\n\n（继续游戏来解锁这些成就！）",
+      "choices": [
+        {"text": "🔙 返回", "next_scene": "start"}
+      ]
+    },
+    {
+      "id": "chapter1_intro",
+      "chapter": 1,
+      "title": "第一章：顽皮的尼尔斯",
+      "description": "🌅 瑞典南部，斯堪尼亚省\n\n春天来了，万物复苏。在一个星期天的早晨，14岁的尼尔斯·霍尔格森正坐在家里的窗边发呆。\n\n尼尔斯是一个瘦高的男孩，有着一双明亮的眼睛，但总是带着调皮的笑容。他最喜欢做的事情，就是欺负家里的动物——拉猫的尾巴、吓唬奶牛、捉弄小鸡...\n\n父母已经多次警告他要善待动物，但他总是当作耳旁风。\"反正它们只是动物，\"他总是这样想。\n\n今天，父母去教堂了，尼尔斯独自在家。他正想着待会儿要怎么捉弄那只刚来的小灰猫...\n\n🐱 突然，他看到母亲衣柜的门开了一条缝，那里似乎有什么东西在发光...\n\n（你现在是尼尔斯。你会怎么做？）",
+      "choices": [
+        {"text": "🔍 好奇地走过去查看", "next_scene": "chapter1_find_goblin"},
+        {"text": "🐱 先去捉弄小猫", "next_scene": "chapter1_tease_cat", "moral_change": -5},
+        {"text": "📖 翻开作业本学习", "next_scene": "chapter1_study", "moral_change": 5, "knowledge_gain": 10}
+      ],
+      "music": "mystery",
+      "narrator": "neutral"
+    },
+    {
+      "id": "chapter1_tease_cat",
+      "title": "捉弄小猫",
+      "description": "你决定先去捉弄小猫。你蹑手蹑脚地走向角落里的小灰猫，正准备拉它的尾巴...\n\n🐱 小猫突然转过身，用那双绿宝石般的眼睛盯着你，似乎在说：\"你真的要这样做吗？\"\n\n你犹豫了一下，但手已经伸出去了。就在这时，母亲衣柜那边传来更亮的光芒...\n\n你的选择会带来什么后果呢？",
+      "choices": [
+        {"text": "😔 停下来，去看看发光的东西", "next_scene": "chapter1_find_goblin"},
+        {"text": "😈 继续捉弄小猫", "next_scene": "chapter1_tease_cat_continue", "moral_change": -10}
+      ]
+    },
+    {
+      "id": "chapter1_tease_cat_continue",
+      "title": "继续捉弄小猫",
+      "description": "你猛地拉了小猫的尾巴！\n\n🐱 \"喵！\"小猫尖叫着逃跑了。\n\n你感到一丝内疚，但更多的是一种恶作剧得逞的快感。然而，你不知道的是，这个选择将深深影响你的未来...\n\n衣柜那边传来了更大的光芒。",
+      "choices": [
+        {"text": "➡️ 去看看发光的东西", "next_scene": "chapter1_find_goblin"}
+      ]
+    },
+    {
+      "id": "chapter1_study",
+      "title": "认真学习的尼尔斯",
+      "description": "你决定先学习一会儿。你翻开作业本，开始阅读关于瑞典地理的知识。\n\n📚 \"瑞典位于斯堪的纳维亚半岛，地形狭长，南北全长1572公里，东西最宽500公里...\"\n\n你读得津津有味。不知不觉中，你对这个世界有了更多的了解。\n\n半小时后，你注意到衣柜那边传来了奇怪的光芒。",
+      "choices": [
+        {"text": "🔍 去看看是什么", "next_scene": "chapter1_find_goblin"}
+      ]
+    },
+    {
+      "id": "chapter1_find_goblin",
+      "title": "小精灵的出现",
+      "description": "你走到衣柜前，小心翼翼地拉开柜门。\n\n✨ 一个只有巴掌大小的小精灵正站在母亲的旧箱子上！他有着长长的白胡子，穿着一件绿色的小外套，戴着一顶尖尖的帽子，正用明亮的小眼睛看着你。\n\n\"噢，你看到我了！\"小精灵惊讶地说，\"这可真是不常见...\"\n\n🧚 小精灵开始在房间里飞舞，留下闪闪发光的轨迹。你看得目瞪口呆。\n\n\"既然你看到了我，\"小精灵说，\"我可以实现你一个愿望！你想变得富有吗？还是想要其他什么？\"\n\n（这是一个关键时刻！你的选择将决定整个故事！）",
+      "choices": [
+        {"text": "🤲 抓住小精灵，威胁他给你更多愿望", "next_scene": "chapter1_capture_goblin", "moral_change": -20},
+        {"text": "🙏 礼貌地请求一个愿望", "next_scene": "chapter1_polite_wish"},
+        {"text": "🤔 询问小精灵需要什么帮助", "next_scene": "chapter1_help_goblin", "moral_change": 10}
+      ],
+      "image_prompt": "A tiny gnome with white beard and green coat flying in a Swedish farmhouse interior, leaving sparkles"
+    },
+    {
+      "id": "chapter1_capture_goblin",
+      "title": "❌ 贪婪的选择",
+      "description": "你猛地伸出双手，想要抓住小精灵！\n\n🧚 小精灵灵活地躲开了，他的表情从友善变成了愤怒。\n\n\"你想要用暴力对待我？\"小精灵的声音变得冰冷，\"那我就给你一个特别的教训吧！\"\n\n🪄 小精灵挥动他的小手杖，一道金光射向你...\n\n你的身体开始缩小！衣服变得越来越大，周围的家具变得越来越高大...\n\n📏 你变小了！现在只有拇指那么大！\n\n\"现在，\"小精灵说，\"你将体验一下被当作弱小者的感受。只有当你学会尊重所有生命时，魔法才会解除。\"\n\n小精灵消失了，留下你在一个巨大而陌生的世界里。",
+      "choices": [
+        {"text": "😱 尖叫着跑向门口", "next_scene": "chapter1_run_out"},
+        {"text": "😭 坐在地上哭泣", "next_scene": "chapter1_cry"}
+      ],
+      "effects": {"size_change": -90, "set_flag": {"selfish_choice": true}}
+    },
+    {
+      "id": "chapter1_polite_wish",
+      "title": "🙏 礼貌的请求",
+      "description": "\"请...请让我变得聪明一些，\"你礼貌地说，\"我想更好地了解这个世界。\"\n\n🧚 小精灵满意地点点头：\"很好的选择！但是，智慧需要通过体验来获得。\"\n\n\"我将把你变小，让你去经历一段旅程。在旅途中，你将学会很多关于生命、关于世界、关于自己的事情。\"\n\n🪄 小精灵挥动小手杖，一道柔和的光芒包围了你...\n\n当光芒散去，你发现自己变小了！只有拇指那么大！\n\n\"别害怕，\"小精灵说，\"这是一次学习的机会。去外面的世界看看吧，你会找到变回原样的方法。\"\n\n💖 你的善良为你赢得了一个好的开始！",
+      "choices": [
+        {"text": "🚶 走出家门开始旅程", "next_scene": "chapter1_go_outside"},
+        {"text": "❓ 询问具体要做什么", "next_scene": "chapter1_ask_instructions"}
+      ],
+      "effects": {"size_change": -90, "moral_change": 10}
+    },
+    {
+      "id": "chapter1_help_goblin",
+      "title": "💖 关心的选择",
+      "description": "\"您看起来似乎有什么困难？\"你关切地问，\"我能帮上什么忙吗？\"\n\n🧚 小精灵惊讶地瞪大了眼睛，然后露出了温暖的笑容。\n\n\"多少年了...\"他轻声说，\"终于有一个人类的孩子愿意帮助我，而不是向我索要东西。\"\n\n\"你有一颗善良的心，孩子。这正是我最看重的品质。\"\n\n\"虽然我确实有一个小小的困扰，但你不必担心。相反，我要送你一份礼物——一次特别的旅程。在这次旅程中，你将看到这个美丽的世界，学会很多宝贵的道理。\"\n\n🪄 小精灵挥动小手杖，一道温暖的光芒包围了你。\n\n当光芒散去，你发现自己变小了！但你心中却有一种奇特的平静感。\n\n\"去吧，\"小精灵的声音在耳边回荡，\"记住，善良和勇气将是你最好的伙伴。\"\n\n💖 你获得了额外的祝福！",
+      "choices": [
+        {"text": "🙏 感谢小精灵，开始旅程", "next_scene": "chapter1_go_outside"}
+      ],
+      "effects": {"size_change": -90, "moral_change": 20, "set_flag": {"blessed": true}}
+    },
+    {
+      "id": "chapter1_run_out",
+      "title": "奔跑的尼尔斯",
+      "description": "你惊慌失措地向门口跑去！但在你现在的体型下，以前几步就能走到的距离现在变得无比遥远。\n\n🚪 你费力地爬过门缝，终于来到了院子里。\n\n外面的世界对现在的你来说是巨大而可怕的。一根小草像一棵大树，一只蚂蚁像一只怪兽...\n\n🐈 突然，你家的猫咪不知从哪里冒了出来！它正用好奇的眼神盯着你...",
+      "choices": [
+        {"text": "🏃 拼命逃跑", "next_scene": "chapter1_run_from_cat"},
+        {"text": "🙀 躲到草丛里", "next_scene": "chapter1_hide_in_grass"}
+      ]
+    },
+    {
+      "id": "chapter1_cry",
+      "title": "哭泣的尼尔斯",
+      "description": "你坐在地上，大声哭泣起来。\n\n😢 \"呜呜呜...我想变回原来的样子...\"\n\n哭泣了一会儿后，你擦干眼泪，意识到这不会解决问题。你必须振作起来！",
+      "choices": [
+        {"text": "💪 站起来，勇敢面对", "next_scene": "chapter1_go_outside", "moral_change": 5},
+        {"text": "😭 继续哭泣", "next_scene": "chapter1_cry_more", "moral_change": -5}
+      ]
+    },
+    {
+      "id": "chapter1_cry_more",
+      "title": "继续哭泣",
+      "description": "你继续哭着，直到哭累了为止。\n\n最终，你还是必须面对现实。你站起身，擦干眼泪，准备迎接挑战。",
+      "choices": [
+        {"text": "➡️ 走出家门", "next_scene": "chapter1_go_outside"}
+      ]
+    },
+    {
+      "id": "chapter1_ask_instructions",
+      "title": "寻求指引",
+      "description": "\"我该怎么做？\"你问。\n\n🧚 小精灵微笑着说：\"跟随你的心。当你学会真正地关爱其他生命时，魔法就会解除。现在，去看看外面的世界吧。有一群大雁正在飞过，也许他们会给你答案。\"\n\n小精灵消失了。",
+      "choices": [
+        {"text": "➡️ 走出家门", "next_scene": "chapter1_go_outside"}
+      ]
+    },
+    {
+      "id": "chapter1_go_outside",
+      "title": "巨大的世界",
+      "description": "你来到了外面。\n\n🌍 在你现在的体型下，整个世界都变得巨大无比。小小的花朵像大树一样高，草丛像是森林，连甲虫都看起来很可怕。\n\n突然，你听到了一阵喧闹声从农场那边传来...\n\n🦢 原来是一群大雁飞过！你家的家鹅们正在院子里仰头看着，似乎很羡慕那些可以自由飞翔的大雁。\n\n🦢 其中一只大白鹅——莫顿——正张开翅膀，似乎想要加入大雁的队伍！\n\n莫顿是农场里最大的鹅，也是最骄傲的。他一直梦想着能像大雁一样飞翔。",
+      "choices": [
+        {"text": "🦢 大喊阻止莫顿", "next_scene": "chapter1_try_stop_morten"},
+        {"text": "👀 静静观察", "next_scene": "chapter1_watch_morten"},
+        {"text": "🏃 跑向莫顿想要加入", "next_scene": "chapter1_run_to_morten"}
+      ]
+    },
+    {
+      "id": "chapter1_run_from_cat",
+      "title": "逃离猫咪",
+      "description": "你拼命逃跑！猫咪在你身后追赶！\n\n🏃 你跑进了一片草丛，猫咪失去了你的踪迹。\n\n你喘着粗气，躲在一朵巨大的蒲公英下面。这时，你听到了头顶传来的雁叫声...\n\n抬头一看，一群大雁正在飞过！而你家的鹅群正在院子里仰头看着！",
+      "choices": [
+        {"text": "👀 去看看鹅群在做什么", "next_scene": "chapter1_go_outside"}
+      ]
+    },
+    {
+      "id": "chapter1_hide_in_grass",
+      "title": "躲藏",
+      "description": "你迅速躲进草丛里，猫咪四处张望，最终离开了。\n\n你松了一口气，然后听到了大雁的叫声。你走出草丛，看到家里的鹅群正在院子里仰望着天空...",
+      "choices": [
+        {"text": "➡️ 去看看", "next_scene": "chapter1_go_outside"}
+      ]
+    },
+    {
+      "id": "chapter1_try_stop_morten",
+      "title": "阻止莫顿",
+      "description": "\"莫顿！别做傻事！\"你大喊，但声音太小了，莫顿根本听不见。\n\n🦢 莫顿张开翅膀，用力扇动，竟然真的飞了起来！\n\n\"等等我！\"家鹅们中，另一只鹅也跟着飞了起来。\n\n莫顿越飞越高，想要加入大雁的队伍。但大雁们嘲笑他是家鹅，不会在野外生存。\n\n\"我能行！\"莫倔强地说。\n\n就在这时，你看到了大雁队伍中的领头雁——阿卡。她是一位经验丰富的老大雁，正用审视的眼神看着莫顿。",
+      "choices": [
+        {"text": "🦢 追上去，想骑在莫顿背上", "next_scene": "chapter1_chase_morten"}
+      ]
+    },
+    {
+      "id": "chapter1_watch_morten",
+      "title": "观察莫顿",
+      "description": "你静静地观察着。\n\n🦢 莫顿真的飞起来了！他正在努力追赶大雁的队伍。\n\n大雁们嘲笑他，说他只是一只家鹅。但莫顿不放弃，他说他可以证明自己。\n\n领头雁阿卡似乎对莫顿的勇气印象深刻，但还是保持警惕。\n\n这时，你意识到这是一个机会！如果你能骑到莫顿背上，你就可以跟随大雁们一起去旅行！",
+      "choices": [
+        {"text": "🦢 跑向莫顿", "next_scene": "chapter1_chase_morten"}
+      ]
+    },
+    {
+      "id": "chapter1_run_to_morten",
+      "title": "奔向莫顿",
+      "description": "你毫不犹豫地向莫顿跑去！\n\n🦢 莫顿正在起飞，你必须在最后一刻跳到他的背上！\n\n你拼尽全力奔跑，然后纵身一跃...\n\n✅ 成功了！你抓住了莫顿背上的羽毛！\n\n\"咦？有什么东西在我背上？\"莫顿疑惑地说。\n\n就这样，你开始了骑鹅旅行的冒险！",
+      "choices": [
+        {"text": "➡️ 继续旅程", "next_scene": "chapter2_intro", "effects": {"add_achievement": "🥚 初章：变小的人"}}
+      ]
+    },
+    {
+      "id": "chapter1_chase_morten",
+      "title": "追逐莫顿",
+      "description": "你拼命向莫顿跑去！\n\n🦢 莫顿正在起飞，你必须抓住机会！\n\n你纵身一跃，伸手抓住了莫顿背上的羽毛！\n\n\"哎哟！\"莫顿叫道，\"有什么东西在我背上？\"\n\n你紧紧抓住，不让自己掉下去。莫顿飞得越来越高，加入了大雁的队伍。\n\n\"好吧，\"领头雁阿卡说，\"既然你来了，就跟上吧。但记住，野外是危险的。\"",
+      "choices": [
+        {"text": "➡️ 开始旅程", "next_scene": "chapter2_intro", "effects": {"add_achievement": "🥚 初章：变小的人"}}
+      ]
+    },
+    {
+      "id": "chapter2_intro",
+      "chapter": 2,
+      "title": "第二章：初遇雁群",
+      "description": "🌅 第二天清晨\n\n你骑在莫顿的背上，随着大雁们飞向北方。这是你第一次从空中俯瞰世界——绿色的田野、蓝色的湖泊、散落的村庄，一切都美得令人惊叹。\n\n🗺️ **知识：瑞典地形**\n瑞典南北狭长，南部是富饶的平原，中部有广袤的森林，北部则是山脉和苔原。你正从南部的斯堪尼亚省向北方飞行。\n\n\"嘿，你这个小家伙，\"莫顿说，\"你能不能告诉我你为什么这么小？\"\n\n🦢 莫顿是一只善良的大白鹅，虽然有点骄傲，但心地很好。他似乎已经把你当成了朋友。\n\n这时，领头雁阿卡飞了过来。\n\n🦢 **阿卡** - 一只年迈但威严的领头雁，她已经带领雁群飞行了很多年，经验丰富，受人尊敬。",
+      "choices": [
+        {"text": "📖 坦诚地告诉阿卡你的故事", "next_scene": "chapter2_tell_truth"},
+        {"text": "🤐 编造一个谎言", "next_scene": "chapter2_lie", "moral_change": -5},
+        {"text": "🤔 保持沉默", "next_scene": "chapter2_silent"}
+      ],
+      "knowledge_gain": 20,
+      "music": "adventure",
+      "narrator": "friendly"
+    },
+    {
+      "id": "chapter2_tell_truth",
+      "title": "坦诚相告",
+      "description": "\"我...我因为不尊重动物，被小精灵变小了，\"你诚实地说，\"只有学会关爱生命，才能变回原样。\"\n\n🦢 阿卡用锐利的眼睛看着你，然后点了点头。\n\n\"你能坦白自己的过错，这说明你有改变的意愿，\"阿卡说，\"欢迎加入我们，小人儿。但你要记住，我们是一个团队，每个人都要承担自己的责任。\"\n\n💖 阿卡对你的诚实印象深刻。这为你赢得了雁群的信任。",
+      "choices": [
+        {"text": "🙏 承诺会努力帮忙", "next_scene": "chapter2_promise"},
+        {"text": "❓ 询问需要做什么", "next_scene": "chapter2_ask_duties"}
+      ],
+      "effects": {"moral_change": 10, "set_flag": {"akka_trust": true}}
+    },
+    {
+      "id": "chapter2_lie",
+      "title": "撒谎",
+      "description": "\"我...我一直就是这么小，\"你撒谎道。\n\n🦢 阿卡眯起眼睛，显然不相信你的话。\n\n\"谎言很容易被识破，小人儿，\"阿卡说，\"但我愿意给你一个证明自己的机会。记住，信任一旦失去，就很难再获得。\"\n\n阿卡飞回了前面。你感到一阵内疚。",
+      "choices": [
+        {"text": "😔 决定以后要说真话", "next_scene": "chapter2_promise"},
+        {"text": "🤐 继续保持沉默", "next_scene": "chapter2_ask_duties"}
+      ],
+      "effects": {"moral_change": -5}
+    },
+    {
+      "id": "chapter2_silent",
+      "title": "保持沉默",
+      "description": "你选择不回答。\n\n🦢 \"每个人都有自己的秘密，\"阿卡说，\"但在这个团队里，坦诚是最好的策略。我们可能会遇到危险，到那时，信任就是生命。\"\n\n阿卡飞回了前面。",
+      "choices": [
+        {"text": "🤔 思考阿卡的话", "next_scene": "chapter2_ask_duties"}
+      ]
+    },
+    {
+      "id": "chapter2_promise",
+      "title": "做出承诺",
+      "description": "\"我会努力的！\"你承诺道，\"我会尽我所能帮助大家！\"\n\n🦢 \"很好，\"阿卡说，\"现在，让我们继续前进吧。还有很长的路要飞。\"\n\n你感到一股责任感在心中升起。这段旅程不仅是为了变回原样，更是为了成长为一个更好的人。",
+      "choices": [
+        {"text": "➡️ 继续飞行", "next_scene": "chapter2_flying"}
+      ],
+      "effects": {"moral_change": 5}
+    },
+    {
+      "id": "chapter2_ask_duties",
+      "title": "询问任务",
+      "description": "\"我需要做什么？\"你问。\n\n🦢 \"首先，\"阿卡说，\"你需要学会观察。我们需要有人留意周围的情况，比如天气变化、危险信号等。\"\n\n\"其次，你要照顾好莫顿。他是一只家鹅，不习惯野外飞行，需要额外的照顾。\"\n\n\"最后，保持学习和成长的心态。这次旅程是对你的考验。\"",
+      "choices": [
+        {"text": "👍 明白了", "next_scene": "chapter2_flying"}
+      ]
+    },
+    {
+      "id": "chapter2_flying",
+      "title": "翱翔天际",
+      "description": "🌬️ 你们继续向北飞行。\n\n🗺️ **知识：瑞典的省份**\n你们正在穿越不同的省份：\n• 斯堪尼亚 - 南部，最温暖的地区\n• 哈兰德 - 西海岸\n• 韦姆兰 - 森林和湖泊地区\n\n经过一个森林时，你突然看到下面有动静！\n\n🦊 一只狐狸正在潜行！他似乎在跟踪什么...\n\n是雁群！狐狸发现了你们！\n\n\"警报！\"你大喊，\"下面有狐狸！\"",
+      "choices": [
+        {"text": "🦊 大声警告雁群", "next_scene": "chapter2_warn_fox"},
+        {"text": "🧠 先观察狐狸的意图", "next_scene": "chapter2_observe_fox"}
+      ],
+      "knowledge_gain": 15
+    },
+    {
+      "id": "chapter2_warn_fox",
+      "title": "警告雁群",
+      "description": "\"狐狸！下面有狐狸！\"你大声警告。\n\n🦢 阿卡立刻发出信号：\"升高！快升高！\"\n\n雁群迅速飞高，脱离了狐狸的跳跃范围。\n\n🦊 地面上，狐狸失望地叫了一声，然后消失在森林中。\n\n\"干得好，小人儿！\"阿卡说，\"你的观察力救了大家。\"\n\n💖 你在雁群中的地位提升了。",
+      "choices": [
+        {"text": "😊 谦虚地表示只是做了应该做的", "next_scene": "chapter2_humble"},
+        {"text": "😎 骄傲地夸耀自己的功劳", "next_scene": "chapter2_proud", "moral_change": -5}
+      ],
+      "effects": {"moral_change": 10}
+    },
+    {
+      "id": "chapter2_observe_fox",
+      "title": "观察狐狸",
+      "description": "你仔细观察下面的情况。\n\n🦊 那是一只红色的狐狸，正在跟踪一只受伤的小雁！小雁掉队了，不知道危险正在逼近！\n\n你必须快速做出决定！",
+      "choices": [
+        {"text": "🦢 立即俯冲去救小雁", "next_scene": "chapter2_rescue_goose"},
+        {"text": "📢 大声警告雁群", "next_scene": "chapter2_warn_fox"},
+        {"text": "😰 保持沉默，不想冒险", "next_scene": "chapter2_ignore_danger", "moral_change": -15}
+      ]
+    },
+    {
+      "id": "chapter2_rescue_goose",
+      "title": "救援行动",
+      "description": "你决定去救那只小雁！\n\n\"莫顿！俯冲！\"你喊道。\n\n🦢 莫顿犹豫了一下，但看到你坚定的眼神，他点了点头。\n\n你们俯冲而下！\n\n🦊 狐狸正准备扑向小雁，突然看到一只大白鹅从天而降！\n\n\"快！抓住我！\"你向小雁伸出手。\n\n小雁抓住了你的手！你们三个一起飞向高空！\n\n\"呼...\"小雁喘着气，\"谢谢你...我差点就...\"\n\n🦊 狐狸在下面愤怒地叫着。\n\n\"那只狐狸...\"小雁说，\"是斯密尔。他很狡猾，一直在跟踪我们。\"",
+      "choices": [
+        {"text": "🤝 安慰小雁", "next_scene": "chapter2_comfort_goose"}
+      ],
+      "effects": {"moral_change": 20, "set_flag": {"rescued_goose": true}}
+    },
+    {
+      "id": "chapter2_ignore_danger",
+      "title": "忽视危险",
+      "description": "你选择保持沉默。\n\n🦊 狐狸扑向了小雁...\n\n你听到了小雁的惨叫声，然后是一片死寂。\n\n😔 你感到一阵强烈的内疚。你本可以救他，但你没有...\n\n晚上，雁群发现少了一只成员。阿卡问你有没有看到什么。\n\n你的选择会怎样影响你？",
+      "choices": [
+        {"text": "😔 坦白自己的懦弱", "next_scene": "chapter2_confess_cowardice"},
+        {"text": "🤐 继续隐瞒", "next_scene": "chapter2_keep_secret", "moral_change": -10}
+      ],
+      "effects": {"set_flag": {"goose_lost": true}, "moral_change": -20}
+    },
+    {
+      "id": "chapter2_confess_cowardice",
+      "title": "坦白懦弱",
+      "description": "\"我...我看到了狐狸，但我太害怕了，没有警告大家...\"你坦白道。\n\n🦢 阿卡沉默了一会儿。\n\n\"承认错误需要勇气，\"她最后说，\"虽然你犯了错，但你的坦诚说明你还有良知。记住这个教训，小人儿。下次，不要让恐惧控制你的行动。\"\n\n💖 虽然你失去了道德值，但至少你选择了诚实。",
+      "choices": [
+        {"text": "🙏 承诺会做得更好", "next_scene": "chapter3_intro"}
+      ],
+      "effects": {"moral_change": 5}
+    },
+    {
+      "id": "chapter2_keep_secret",
+      "title": "保守秘密",
+      "description": "\"我没有看到什么，\"你说。\n\n🦢 阿卡深深地看了你一眼，但什么也没说。\n\n但你知道，这个小雁的死是你造成的。这个秘密会成为你心中的重担...",
+      "choices": [
+        {"text": "😔 继续旅程，心中充满内疚", "next_scene": "chapter3_intro"}
+      ],
+      "effects": {"moral_change": -10, "set_flag": {"dark_secret": true}}
+    },
+    {
+      "id": "chapter2_comfort_goose",
+      "title": "安慰小雁",
+      "description": "\"别怕，\"你说，\"你现在安全了。\"\n\n🦢 小雁的名字叫尤西，他是今年刚出生的，经验不足，不小心掉队了。\n\n\"谢谢你救了我，\"尤西说，\"我会永远记住你的恩情。\"\n\n🦢 阿卡飞了过来：\"干得好，你们两个。莫顿，你展现了真正的勇气。小人儿，你的机智救了尤西的命。\"\n\n\"但是，\"阿卡严肃地说，\"斯密尔不会轻易放弃。我们必须保持警惕。\"\n\n🦊 **斯密尔** - 一只狡猾的红狐狸，是雁群的死敌。他聪明、执着，一直在寻找机会捕捉落单的大雁。",
+      "choices": [
+        {"text": "❓ 询问关于斯密尔的信息", "next_scene": "chapter2_ask_about_smirre"},
+        {"text": "➡️ 继续飞行", "next_scene": "chapter3_intro"}
+      ],
+      "effects": {"moral_change": 5}
+    },
+    {
+      "id": "chapter2_humble",
+      "title": "谦逊",
+      "description": "\"我只是做了我应该做的，\"你谦虚地说。\n\n🦢 阿卡赞许地点点头：\"谦逊是一种美德。你正在成长，小人儿。\"\n\n其他大雁也对你投来友善的目光。\n\n💖 你在雁群中的地位大大提升了。",
+      "choices": [
+        {"text": "➡️ 继续旅程", "next_scene": "chapter3_intro"}
+      ],
+      "effects": {"moral_change": 5}
+    },
+    {
+      "id": "chapter2_proud",
+      "title": "骄傲",
+      "description": "\"看吧！是我救了大家！\"你骄傲地说。\n\n🦢 阿卡的表情变得严肃：\"傲慢是危险的。今天是你运气好，但如果你太骄傲，下次可能会犯致命的错误。\"\n\n你感到有些羞愧。",
+      "choices": [
+        {"text": "😔 道歉", "next_scene": "chapter3_intro", "moral_change": 5},
+        {"text": "😤 不以为然", "next_scene": "chapter3_intro", "moral_change": -5}
+      ]
+    },
+    {
+      "id": "chapter2_ask_about_smirre",
+      "title": "了解斯密尔",
+      "description": "\"斯密尔是什么样的人？\"你问。\n\n🦢 \"他不是普通的狐狸，\"阿卡说，\"他聪明、狡猾，而且非常执着。很多年前，他差点抓到我，从那以后，他就一直在跟踪我们。\"\n\n\"他恨我们，因为他认为自己有权利吃掉我们。但他不明白的是，强者应该保护弱者，而不是欺压他们。\"\n\n\"小心斯密尔，小人儿。他会不择手段。\"",
+      "choices": [
+        {"text": "➡️ 继续旅程", "next_scene": "chapter3_intro"}
+      ],
+      "knowledge_gain": 10
+    },
+    {
+      "id": "chapter3_intro",
+      "chapter": 3,
+      "title": "第三章：夜晚的营地",
+      "description": "🌙 夜幕降临\n\n雁群在一处安全的湖边停下来休息。\n\n🗺️ **知识：瑞典的湖泊**\n瑞典有近10万个湖泊，大部分位于北部。这些湖泊形成于冰川时期，水质清澈，是许多水鸟的栖息地。\n\n你从莫顿背上跳下来，伸展着身体。一天的飞行让你感到疲惫，但也充满了成就感。\n\n\"来，小人儿，\"阿卡说，\"我们需要谈谈明天的计划。\"\n\n雁群围坐在一起，阿卡开始说明天要飞越的地区。\n\n\"明天我们将进入奥斯莫山区，\"阿卡说，\"那里地形复杂，容易迷路。而且...斯密尔可能在那里等着我们。\"\n\n🏔️ **奥斯莫山区** - 瑞典中部的山区，以险峻的山峰和深邃的峡谷闻名。",
+      "choices": [
+        {"text": "🙋 自愿担任侦察兵", "next_scene": "chapter3_volunteer_scout"},
+        {"text": "❓ 询问如何应对斯密尔", "next_scene": "chapter3_ask_strategy"},
+        {"text": "😴 表示太累了，想休息", "next_scene": "chapter3_rest", "moral_change": -5}
+      ],
+      "knowledge_gain": 20,
+      "music": "campfire",
+      "narrator": "serious"
+    },
+    {
+      "id": "chapter3_volunteer_scout",
+      "title": "志愿者侦察兵",
+      "description": "\"让我去侦察吧！\"你自告奋勇，\"我体型小，不容易被发现。\"\n\n🦢 阿卡赞许地看着你：\"这是一个危险的提议，但你的勇气值得赞赏。不过，你太小了，一个人太危险。\"\n\n\"让尤西和你一起去，\"阿卡说，\"他需要学习如何侦察。你们两个互相照应。\"\n\n🦢 尤西兴奋地点点头：\"谢谢你信任我，阿卡！\"\n\n💖 你的勇气为你赢得了更多的尊重。",
+      "choices": [
+        {"text": "🤝 与尤西一起出发", "next_scene": "chapter3_scouting_with_yusi"}
+      ],
+      "effects": {"moral_change": 15, "set_flag": {"scout_volunteer": true}}
+    },
+    {
+      "id": "chapter3_ask_strategy",
+      "title": "询问策略",
+      "description": "\"我们该如何应对斯密尔？\"你问。\n\n🦢 \"好问题，\"阿卡说，\"斯密尔虽然狡猾，但也有弱点。他过于自信，常常低估对手。\"\n\n\"我们的策略是：保持警惕，分散飞行，不让他预测我们的路线。同时，我们会设立观察哨，及时发现危险。\"\n\n\"最重要的是，\"阿卡看着你，\"团结就是力量。斯密尔最喜欢攻击落单的目标，所以我们决不能让任何人掉队。\"\n\n你点头表示理解。",
+      "choices": [
+        {"text": "🙋 我想加入观察哨", "next_scene": "chapter3_volunteer_scout"},
+        {"text": "😴 好的，我去休息了", "next_scene": "chapter3_rest"}
+      ],
+      "knowledge_gain": 10
+    },
+    {
+      "id": "chapter3_rest",
+      "title": "休息",
+      "description": "你找了一个舒适的地方躺下。\n\n🌙 夜晚的湖边很美。星星在头顶闪烁，远处的森林里传来夜鸟的叫声。\n\n莫顿在你旁边安顿下来：\"今天累吗，小人儿？\"\n\n\"有一点，\"你说，\"但是很开心。\"\n\n\"你知道吗，\"莫顿说，\"我从未想过自己能够飞这么远。以前我只是在院子里走来走去，梦想着像大雁一样飞翔。现在，这个梦想实现了。\"\n\n\"谢谢你带我一起，\"莫顿真诚地说。",
+      "choices": [
+        {"text": "🤝 也谢谢你让我骑在你背上", "next_scene": "chapter3_bond_with_morten", "moral_change": 5},
+        {"text": "😊 开玩笑说要收他房租", "next_scene": "chapter3_joke_with_morten"}
+      ]
+    },
+    {
+      "id": "chapter3_bond_with_morten",
+      "title": "与莫顿的友谊",
+      "description": "\"也谢谢你让我骑在你背上，\"你真诚地说，\"如果没有你，我根本无法进行这次旅程。\"\n\n🦢 莫顿笑了：\"我们是朋友，朋友之间不需要说谢谢。而且，有你在我背上，我感觉更有勇气了。\"\n\n\"以前我很胆小，\"莫顿承认道，\"害怕离开家，害怕野外的生活。但现在，和你一起冒险，我发现我可以比我想象的更勇敢。\"\n\n🌙 你们两个聊了很久，直到月光洒满湖面。\n\n💖 你和莫顿的友谊更加深厚了。",
+      "choices": [
+        {"text": "😴 休息，准备明天的冒险", "next_scene": "chapter4_intro"}
+      ],
+      "effects": {"set_flag": {"morten_friendship": true}}
+    },
+    {
+      "id": "chapter3_joke_with_morten",
+      "title": "与莫顿开玩笑",
+      "description": "\"那当然，\"你开玩笑道，\"毕竟我可是要收房租的！\"\n\n🦢 莫顿愣了一下，然后哈哈大笑：\"你这个小人儿！好吧，好吧，等我变富有了，一定给你最好的燕麦！\"\n\n你们两个笑成一团。\n\n\"说真的，\"莫顿说，\"谢谢你。有你在，这段旅程变得更有趣了。\"\n\n💖 友谊在笑声中成长。",
+      "choices": [
+        {"text": "😴 休息", "next_scene": "chapter4_intro"}
+      ]
+    },
+    {
+      "id": "chapter3_scouting_with_yusi",
+      "title": "侦察任务",
+      "description": "🌙 你和尤西悄悄出发了。\n\n因为你的体型小，你可以躲在草丛中而不被发现。尤西则飞在低空，观察周围的情况。\n\n\"你看那边，\"尤西低声说，\"那是...\"\n\n🦊 斯密尔！狐狸正在附近的岩石上等待！他在观察雁群休息的地方！\n\n\"我们必须回去告诉阿卡！\"尤西说。\n\n但就在这时，斯密尔突然转过头，看向你们的方向！\n\n\"快跑！\"你喊道。",
+      "choices": [
+        {"text": "🏃 拉着尤西逃跑", "next_scene": "chapter3_run_from_smirre"},
+        {"text": "🎭 想办法分散斯密尔的注意力", "next_scene": "chapter3_distract_smirre"}
+      ]
+    },
+    {
+      "id": "chapter3_run_from_smirre",
+      "title": "逃离斯密尔",
+      "description": "你拉着尤西拼命逃跑！\n\n🦊 斯密尔在后面追赶！\n\n\"这边！\"你看到一个小洞穴，你们躲了进去。\n\n斯密尔在外面嗅了嗅，找不到你们，最终离开了。\n\n\"呼...\"尤西喘着气，\"好险...\"\n\n\"我们必须回去告诉阿卡，\"你说。",
+      "choices": [
+        {"text": "➡️ 返回营地", "next_scene": "chapter3_report_to_akka"}
+      ],
+      "effects": {"moral_change": 5}
+    },
+    {
+      "id": "chapter3_distract_smirre",
+      "title": "分散注意力",
+      "description": "\"你先回去告诉阿卡！\"你对尤西说，\"我来引开斯密尔！\"\n\n\"但是...\"尤西犹豫道。\n\n\"快去！这是唯一的办法！\"\n\n🦢 尤西点点头，飞向营地。\n\n你开始制造噪音，扔石子，成功吸引了斯密尔的注意！\n\n🦊 \"在那里！\"斯密尔冲向你！\n\n你拼命逃跑，利用你小的优势，钻进了斯密尔进不去的小洞。\n\n\"可恶！\"斯密尔在外面叫道。\n\n最终，他放弃了。但你被困住了...\n\n后来，雁群找到了你。\n\n\"你是个真正的英雄，\"阿卡说，\"你冒着生命危险救了大家。\"",
+      "choices": [
+        {"text": "😊 谦虚地表示只是做了应该做的", "next_scene": "chapter4_intro"}
+      ],
+      "effects": {"moral_change": 25, "add_achievement": "🦸‍♂️ 真正的勇者"}
+    },
+    {
+      "id": "chapter3_report_to_akka",
+      "title": "向阿卡报告",
+      "description": "你回到了营地，向阿卡报告了斯密尔的位置。\n\n🦢 \"干得好，\"阿卡说，\"现在我们知道他的位置了，可以制定对策。\"\n\n\"今天晚上，我们轮流守夜，\"阿卡决定，\"斯密尔不会轻易放弃的。\"\n\n你也参加了守夜。在月光下，你思考着这一天的经历。\n\n你学到了很多——关于勇气、友谊、责任。\n\n💖 你正在慢慢成长。",
+      "choices": [
+        {"text": "😴 守夜结束后休息", "next_scene": "chapter4_intro"}
+      ],
+      "effects": {"moral_change": 10}
+    },
+    {
+      "id": "chapter4_intro",
+      "chapter": 4,
+      "title": "第四章：奥斯莫山区",
+      "description": "🏔️ 第三天 - 奥斯莫山区\n\n雁群进入了险峻的奥斯莫山区。\n\n🗺️ **知识：奥斯莫山区**\n奥斯莫位于瑞典中西部，以壮观的山峰和深邃的峡谷闻名。这里的岩石形成于15亿年前，是瑞典最古老的地质结构之一。\n\n\"大家注意！\"阿卡喊道，\"保持队形，不要掉队！\"\n\n山区风很大，飞行变得困难。你紧紧抓住莫顿的羽毛，生怕掉下去。\n\n突然，一阵狂风吹来！\n\n💨 莫顿被吹得失去平衡！你们正在向一个深渊坠落！",
+      "choices": [
+        {"text": "😱 大声呼救", "next_scene": "chapter4_call_for_help"},
+        {"text": "🧠 试图想办法稳住", "next_scene": "chapter4_try_stabilize"}
+      ],
+      "knowledge_gain": 25,
+      "music": "tense",
+      "narrator": "urgent"
+    },
+    {
+      "id": "chapter4_call_for_help",
+      "title": "呼救",
+      "description": "\"救命！\"你大声呼喊。\n\n🦢 其他大雁听到了你的呼救！\n\n几只强壮的大雁飞过来，帮助莫顿稳住了身体！\n\n\"谢...谢谢...\"莫顿喘着气说。\n\n\"没事了，\"大雁们说，\"大家互相帮助是我们的传统。\"\n\n💖 你再次感受到了雁群团结的力量。",
+      "choices": [
+        {"text": "➡️ 继续飞行", "next_scene": "chapter4_continue_flight"}
+      ],
+      "effects": {"moral_change": 5}
+    },
+    {
+      "id": "chapter4_try_stabilize",
+      "title": "稳住身体",
+      "description": "你努力思考...突然，你想到了一个办法！\n\n\"莫顿！展开翅膀！\"你喊道，\"利用风力！\"\n\n🦢 莫顿展开翅膀，借助风力重新获得了平衡！\n\n\"好险！\"莫顿说，\"你真聪明！\"\n\n💖 你的冷静和机智救了你们两个。",
+      "choices": [
+        {"text": "➡️ 继续飞行", "next_scene": "chapter4_continue_flight"}
+      ],
+      "effects": {"moral_change": 10}
+    },
+    {
+      "id": "chapter4_continue_flight",
+      "title": "继续飞行",
+      "description": "你们继续穿越山区。\n\n🦢 阿卡在前面领路，她熟悉这里的地形，知道如何避开最危险的风口。\n\n\"前面有一个休息点，\"阿卡说，\"我们可以在那里避避风。\"\n\n你们来到了一个小山谷，那里相对平静。雁群降落下来休息。\n\n\"这里以前是一个大农场，\"阿卡说，\"但现在已经废弃了。不过，我们还是可以找到一些食物。\"",
+      "choices": [
+        {"text": "🔍 去探索废弃的农场", "next_scene": "chapter4_explore_farm"},
+        {"text": "🦢 和莫顿一起去找食物", "next_scene": "chapter4_find_food"}
+      ]
+    },
+    {
+      "id": "chapter4_explore_farm",
+      "title": "探索废弃农场",
+      "description": "你决定去探索这个废弃的农场。\n\n因为你的体型小，你可以进入别人进不去的地方。\n\n你发现了一间小屋的窗户开着，悄悄爬了进去。\n\n🏠 屋里布满了灰尘，但还能看出以前的样子。墙上挂着一些旧照片，桌上放着一些书...\n\n📚 你翻开一本旧书，发现这是一本日记！\n\n\"1895年4月12日。今天，我救了一只受伤的大雁...\"\n\n这是这个农场主的日记！他似乎很喜欢动物，经常帮助受伤的野生动物。\n\n你继续阅读，了解了很多关于这个地区的历史和自然知识。\n\n💡 你学到了很多！",
+      "choices": [
+        {"text": "📚 继续阅读", "next_scene": "chapter4_read_more_diary"},
+        {"text": "🔙 返回雁群", "next_scene": "chapter5_intro"}
+      ],
+      "knowledge_gain": 50,
+      "effects": {"add_item": "旧日记"}
+    },
+    {
+      "id": "chapter4_read_more_diary",
+      "title": "阅读日记",
+      "description": "你继续阅读日记。\n\n📚 \"这些年来，我帮助了很多动物。但我最难忘的是那只大雁，她叫阿卡...\"\n\n等等，这是阿卡？!\n\n\"阿卡带着她的雁群每年经过这里。我们已经成为了朋友。她很聪明，能听懂人类的话。\"\n\n\"我希望人类能够学会与动物和谐相处。我们是这个星球上的邻居，应该互相帮助。\"\n\n你深深地被感动了。这个农场主是一个善良的人，他的精神值得学习。\n\n💖 你决定把这本日记带走，也许它会对你有所帮助。",
+      "choices": [
+        {"text": "🔙 带着日记返回雁群", "next_scene": "chapter5_intro"}
+      ],
+      "knowledge_gain": 30
+    },
+    {
+      "id": "chapter4_find_food",
+      "title": "寻找食物",
+      "description": "你和莫顿一起去寻找食物。\n\n🌾 你们在废弃的农场里找到了一些燕麦和谷物。\n\n\"哇，这个农场主真是慷慨，\"莫顿说，\"即使人不在了，还留下了这么多食物。\"\n\n\"也许他是故意留下的，\"你说，\"为了帮助路过的动物。\"\n\n🦢 莫顿若有所思地点点头：\"你说得对。这个农场主一定是一个善良的人。\"\n\n你们收集了足够的食物，带回给雁群。\n\n🦢 \"谢谢你们，\"阿卡说，\"这个农场确实是一个特别的地方。这里曾经住着一位善良的老人，他总是帮助路过的动物。\"\n\n\"他叫奥斯卡，\"阿卡说，\"我很多年前就认识他。他是我最好的朋友。\"",
+      "choices": [
+        {"text": "❓ 询问关于奥斯卡的故事", "next_scene": "chapter4_ask_about_oscar"}
+      ],
+      "effects": {"moral_change": 5}
+    },
+    {
+      "id": "chapter4_ask_about_oscar",
+      "title": "奥斯卡的故事",
+      "description": "\"奥斯卡是怎么样的一个人？\"你问。\n\n🦢 阿卡的眼中闪烁着回忆的光芒：\n\n\"他是一个特别的人，从小就能听懂动物的话。他救助了很多受伤的动物，我也曾被他救过。\"\n\n\"那时我年轻，不小心被猎人打伤了翅膀。奥斯卡发现了我，细心地照顾我，直到我康复。\"\n\n\"他教会了我很多关于人类世界的知识，我也教会了他关于动物世界的智慧。我们成为了最好的朋友。\"\n\n\"他去世前，告诉我这个农场永远对动物开放。他说，'这是我对这个世界的一点贡献。'\"\n\n阿卡沉默了一会儿，然后说：\"奥斯卡是我见过最善良的人类。我希望有一天，人类都能像他一样。\"\n\n你听着这个故事，心中充满了感动和敬佩。\n\n💖 你又学到了一课：善良不分种族，每个人都应该为这个世界做出贡献。",
+      "choices": [
+        {"text": "😊 我也想成为像奥斯卡一样的人", "next_scene": "chapter5_intro", "moral_change": 10},
+        {"text": "😔 我以前对动物很不好...", "next_scene": "chapter5_intro", "moral_change": 5}
+      ]
+    },
+    {
+      "id": "chapter5_intro",
+      "chapter": 5,
+      "title": "第五章：风暴来袭",
+      "description": "⛈️ 第四天 - 风暴\n\n你们正在飞行，突然，天色变暗了。\n\n\"不好！\"阿卡喊道，\"有风暴来了！\"\n\n⚡ 乌云聚集，狂风大作。闪电在云层中闪烁，雷声轰鸣。\n\n\"我们必须找个地方避避！\"阿卡喊道。\n\n🗺️ **知识：瑞典的天气**\n瑞典的天气变化多端，尤其是在山区。春季经常有突发风暴，对飞行非常危险。\n\n\"那边有一个山洞！\"莫顿喊道。\n\n\"不，那太远了！\"阿卡说，\"我们可能赶不到！\"\n\n风暴越来越近，你必须快速做出决定！",
+      "choices": [
+        {"text": "🕳️ 建议飞向山洞", "next_scene": "chapter5_fly_to_cave"},
+        {"text": "🌲 建议降落在森林里", "next_scene": "chapter5_land_in_forest"},
+        {"text": "🧠 询问阿卡的意见", "next_scene": "chapter5_ask_akka"}
+      ],
+      "knowledge_gain": 20,
+      "music": "storm",
+      "narrator": "urgent"
+    },
+    {
+      "id": "chapter5_fly_to_cave",
+      "title": "飞向山洞",
+      "description": "\"我们试着飞向那个山洞！\"你喊道。\n\n雁群全力向山洞飞去！\n\n⚡ 闪电在你们周围闪烁，雷声震耳欲聋。狂风几乎要把你们吹走。\n\n\"快！就快到了！\"阿卡喊道。\n\n你们在最后一刻冲进了山洞！\n\n安全了！\n\n但洞里黑漆漆的，你看不清楚里面有什么...",
+      "choices": [
+        {"text": "🔍 探索山洞", "next_scene": "chapter5_explore_cave"},
+        {"text": "😴 待在洞口休息", "next_scene": "chapter5_rest_at_entrance"}
+      ]
+    },
+    {
+      "id": "chapter5_land_in_forest",
+      "title": "降落在森林",
+      "description": "\"降落在森林里吧！\"你建议道。\n\n\"森林里树木密集，我们可以躲在树下！\"\n\n雁群降落了。但风暴太大了，树被吹得摇摇欲坠，非常危险！\n\n⚡ 一道闪电击中了附近的一棵树！\n\n\"这里不安全！\"阿卡喊道，\"我们必须离开！\"\n\n你们又回到空中，寻找更好的避难所。\n\n（你浪费了宝贵的时间，但学到了一个教训：在紧急情况下，要相信有经验的领导者。）",
+      "choices": [
+        {"text": "➡️ 跟随阿卡", "next_scene": "chapter5_follow_akka"}
+      ],
+      "effects": {"moral_change": -5, "hp_change": -10}
+    },
+    {
+      "id": "chapter5_ask_akka",
+      "title": "询问阿卡",
+      "description": "\"阿卡，你觉得我们应该怎么做？\"你问。\n\n🦢 阿卡赞许地点点头：\"问得好。在这附近，我记得有一个旧谷仓，应该可以避避雨。\"\n\n\"跟我来！\"\n\n阿卡带领雁群飞向那个旧谷仓。\n\n💡 你学到了一个重要的领导力课程：在紧急情况下，应该信任有经验的领导者，而不是盲目地提出自己的意见。",
+      "choices": [
+        {"text": "➡️ 跟随阿卡", "next_scene": "chapter5_follow_akka"}
+      ],
+      "effects": {"moral_change": 10, "knowledge_gain": 10}
+    },
+    {
+      "id": "chapter5_follow_akka",
+      "title": "跟随阿卡",
+      "description": "你紧紧跟着阿卡，穿过风暴。\n\n⚡ 风暴非常猛烈，但你信任阿卡的领导。\n\n终于，你们看到了一个旧谷仓！\n\n\"进去！\"阿卡喊道。\n\n你们冲进了谷仓，安全了！\n\n🏠 谷仓里温暖而干燥，堆满了干草。这是一个完美的避难所。",
+      "choices": [
+        {"text": "😴 休息，等待风暴过去", "next_scene": "chapter6_intro"}
+      ]
+    },
+    {
+      "id": "chapter5_explore_cave",
+      "title": "探索山洞",
+      "description": "你决定探索山洞深处。\n\n因为你的体型小，你可以进入狭窄的通道。\n\n🕳️ 你发现山洞深处有一个小空间，墙上画着古老的壁画！\n\n🎨 这些壁画描绘了古代人类的生活——狩猎、种植、祭祀...\n\n⚠️ 但突然，你注意到洞顶在滴水！水滴越来越多...是暴雨！水正在涌入山洞！\n\n\"快出去！\"你大喊。",
+      "choices": [
+        {"text": "🏃 跑出去", "next_scene": "chapter5_escape_cave"}
+      ],
+      "knowledge_gain": 40
+    },
+    {
+      "id": "chapter5_rest_at_entrance",
+      "title": "洞口休息",
+      "description": "你待在洞口休息。\n\n外面，风暴正在肆虐。雷电交加，狂风呼啸。\n\n雁群挤在一起取暖。莫顿把你放在他的翅膀下，保护你不被吹走。\n\n\"谢谢，\"你说。\n\n\"我们是朋友，\"莫顿微笑着说。\n\n💖 你感受到了友谊的温暖。",
+      "choices": [
+        {"text": "➡️ 等待风暴过去", "next_scene": "chapter6_intro"}
+      ],
+      "effects": {"moral_change": 5}
+    },
+    {
+      "id": "chapter5_escape_cave",
+      "title": "逃离山洞",
+      "description": "你跑出山洞，大喊：\"水正在涌入！\"\n\n雁群立即起飞，离开了山洞。\n\n几秒钟后，整个山洞被洪水淹没！\n\n\"好险！\"阿卡说，\"谢谢你，小人儿。你救了大家。\"\n\n💖 你的好奇心和警惕性再次救了大家。",
+      "choices": [
+        {"text": "😊 谦虚地表示只是做了应该做的", "next_scene": "chapter6_intro"}
+      ],
+      "effects": {"moral_change": 15}
+    },
+    {
+      "id": "chapter6_intro",
+      "chapter": 6,
+      "title": "第六章：风暴后的平静",
+      "description": "🌅 第五天清晨\n\n风暴终于过去了。阳光洒在大地上，一切都显得格外清新。\n\n雁群从避难所出来，准备继续旅程。\n\n\"这场风暴让我们耽误了不少时间，\"阿卡说，\"我们需要加快速度，才能按时到达拉普兰。\"\n\n🗺️ **知识：拉普兰**\n拉普兰位于瑞典北部，是北极圈内的一片广袤地区。这里夏季有极昼，冬季有极光，是萨米人（Sámi）的故乡，也是驯鹿的栖息地。\n\n但就在这时，一个阴影出现了。\n\n🦊 斯密尔！他在风暴期间跟踪了你们，现在正等着这个机会！\n\n\"我知道你们会在这里，\"斯密尔狡猾地笑着说，\"现在，你们逃不掉了。\"",
+      "choices": [
+        {"text": "⚔️ 站出来面对斯密尔", "next_scene": "chapter6_face_smirre"},
+        {"text": "🛡️ 建议雁群立即起飞", "next_scene": "chapter6_take_off"},
+        {"text": "🤔 试图和斯密尔谈判", "next_scene": "chapter6_negotiate_smirre"}
+      ],
+      "knowledge_gain": 25,
+      "music": "confrontation",
+      "narrator": "dramatic"
+    },
+    {
+      "id": "chapter6_face_smirre",
+      "title": "面对斯密尔",
+      "description": "你从莫顿背上跳下来，站在斯密尔面前。\n\n\"斯密尔，你为什么要这样？\"你问道，\"你为什么一定要伤害我们？\"\n\n🦊 斯密尔愣了一下，然后轻蔑地说：\"我是狐狸，我需要吃肉。这是大自然的法则。\"\n\n\"不，\"你说，\"大自然的法则是强者保护弱者，而不是强者欺压弱者。你有能力帮助别人，但你却选择伤害。\"\n\n\"你...\"斯密尔似乎被你的话触动了。\n\n\"看看奥斯卡，\"你说（如果读了日记），\"他帮助了多少动物？他才是真正的强者。而你，只是一个欺软怕硬的懦夫。\"\n\n🦊 斯密尔沉默了。你的话似乎触动了他内心深处什么。\n\n\"够了！\"斯密尔最后说，\"我还会回来的！\"\n\n他转身离开了。\n\n你用勇气和智慧避免了一场战斗！",
+      "choices": [
+        {"text": "➡️ 继续旅程", "next_scene": "chapter7_intro"}
+      ],
+      "effects": {"moral_change": 20, "requirements": {"has_item": "旧日记"}, "set_flag": {"smirre_redeemed": true}}
+    },
+    {
+      "id": "chapter6_take_off",
+      "title": "起飞",
+      "description": "\"我们立即起飞！\"你建议道。\n\n雁群迅速飞向空中！\n\n🦊 斯密尔在下面跳起来，试图抓住一只大雁，但失手了。\n\n\"可恶！\"斯密尔叫道。\n\n雁群安全地飞走了。\n\n\"干得好，小人儿，\"阿卡说，\"你的判断救了我们。\"\n\n💖 你的果断和机智再次证明了你的价值。",
+      "choices": [
+        {"text": "➡️ 继续旅程", "next_scene": "chapter7_intro"}
+      ],
+      "effects": {"moral_change": 10}
+    },
+    {
+      "id": "chapter6_negotiate_smirre",
+      "title": "与斯密尔谈判",
+      "description": "\"斯密尔，我们可以谈谈吗？\"你问道。\n\n🦊 \"谈什么？\"斯密尔怀疑地说。\n\n\"你为什么一定要吃我们？\"你说，\"你可以吃兔子、田鼠...为什么偏偏是大雁？\"\n\n\"因为大雁是最美味的，\"斯密尔说。\n\n\"那我们来做一个交易，\"你说，\"如果你放我们走，我会告诉你哪里有更多的食物。\"\n\n斯密尔犹豫了...\n\n最终，他同意了。你告诉他了一个废弃的农场，那里有很多田鼠。\n\n\"好吧，\"斯密尔说，\"这次我放过你们。但下次...\"\n\n他离开了。\n\n💖 你用智慧避免了冲突。",
+      "choices": [
+        {"text": "➡️ 继续旅程", "next_scene": "chapter7_intro"}
+      ],
+      "effects": {"moral_change": 15}
+    },
+    {
+      "id": "chapter7_intro",
+      "chapter": 7,
+      "title": "第七章：北方的呼唤",
+      "description": "🏔️ 几天后 - 瑞典北部\n\n雁群继续向北飞行，进入了拉普兰地区。\n\n🗺️ **知识：拉普兰的地理**\n拉普兰是一片广袤的荒野，有山脉、森林、苔原和无数的湖泊。这里昼夜温差大，夏季有极昼现象，太阳几乎不落山。\n\n\"看那里！\"阿卡喊道。\n\n你看到了远处的雪山，在阳光下闪闪发光。那是瑞典最高的山峰——凯布讷山（Kebnekaise），海拔2104米。\n\n\"那是我们旅程的终点，\"阿卡说，\"我们将在那里筑巢，孵化下一代。\"\n\n但你心中却在想：我的旅程什么时候才能结束？我什么时候才能变回原样？\n\n\"阿卡，\"你问道，\"我还需要做什么才能变回原样？\"",
+      "choices": [
+        {"text": "❓ 询问关于变回原样的方法", "next_scene": "chapter7_ask_about_cure"},
+        {"text": "😔 表达自己的担忧", "next_scene": "chapter7_express_worry"},
+        {"text": "💪 表示愿意继续帮助雁群", "next_scene": "chapter7_offer_help", "moral_change": 10}
+      ],
+      "knowledge_gain": 30,
+      "music": "epic",
+      "narrator": "inspirational"
+    },
+    {
+      "id": "chapter7_ask_about_cure",
+      "title": "询问解除魔法的方法",
+      "description": "\"我还需要做什么才能变回原样？\"你问。\n\n🦢 阿卡沉默了一会儿，然后说：\"小精灵说，只有当你学会关爱生命时，魔法才会解除。\"\n\n\"但你已经学会了很多，小人儿。你变得勇敢、善良、有责任感。也许...是时候了。\"\n\n\"等我们到达凯布讷山后，我会帮你召唤小精灵。\"\n\n💖 你感到一丝希望。",
+      "choices": [
+        {"text": "😊 谢谢阿卡", "next_scene": "chapter8_intro"}
+      ]
+    },
+    {
+      "id": "chapter7_express_worry",
+      "title": "表达担忧",
+      "description": "\"阿卡，\"你担心地说，\"我真的能变回原样吗？我以前对动物那么不好...\"\n\n🦢 阿卡微笑着说：\"每个人都会犯错，小人儿。重要的是你从中学到了什么。\"\n\n\"看看现在的你——你冒着生命危险救了尤西，你帮助大家躲避斯密尔，你在风暴中保持了冷静。你已经改变了很多。\"\n\n\"我相信你已经准备好变回原样了。等到达凯布讷山后，我会帮你。\"\n\n💖 阿卡的话让你感到温暖和安慰。",
+      "choices": [
+        {"text": "😊 谢谢阿卡", "next_scene": "chapter8_intro"}
+      ],
+      "effects": {"moral_change": 5}
+    },
+    {
+      "id": "chapter7_offer_help",
+      "title": "愿意提供帮助",
+      "description": "\"在那之前，我会继续帮助大家，\"你坚定地说，\"这是我应做的。\"\n\n🦢 阿卡赞许地看着你：\"你成长得很快，小人儿。你的善良和勇气让你变得与众不同。\"\n\n\"谢谢，\"阿卡真诚地说，\"有你和我们在一起，是我们的荣幸。\"\n\n💖 你的决定赢得了大家深深的敬意。",
+      "choices": [
+        {"text": "➡️ 继续旅程", "next_scene": "chapter8_intro"}
+      ],
+      "effects": {"moral_change": 15}
+    },
+    {
+      "id": "chapter8_intro",
+      "chapter": 8,
+      "title": "第八章：凯布讷山的考验",
+      "description": "🏔️ 凯布讷山脚下\n\n你们终于到达了目的地——凯布讷山。\n\n🗺️ **知识：凯布讷山**\n凯布讷山是瑞典的最高峰，海拔2104米。山上有冰川，气候变化多端。对于雁群来说，这里是理想的筑巢地点，因为 predator 很难到达这里。\n\n\"我们到了，\"阿卡说，\"这里是我们的家。\"\n\n雁群开始筑巢，准备迎接新的生命。\n\n\"现在，\"阿卡转向你，\"是时候帮你变回原样了。\"\n\n\"但在我帮你召唤小精灵之前，你必须通过最后一个考验。\"\n\n\"什么考验？\"你问。\n\n\"你必须做出一个选择，\"阿卡说，\"这个选择将决定你的未来。\"\n\n🧚 小精灵出现了！\n\n\"你好，小人儿，\"小精灵说，\"你学到了很多。现在，我给你三个选择：\"\n\n\"1️⃣ 立即变回原样，独自回家\"\n\"2️⃣ 留下来帮助雁群，直到秋天再回家\"\n\"3️⃣ 永远保持现在的样子，成为雁群的正式成员\"",
+      "choices": [
+        {"text": "🏠 选择1：立即变回原样", "next_scene": "chapter8_choice_instant"},
+        {"text": "🤝 选择2：留下来帮忙", "next_scene": "chapter8_choice_stay"},
+        {"text": "🦢 选择3：永远保持小", "next_scene": "chapter8_choice_forever"}
+      ],
+      "knowledge_gain": 20,
+      "music": "emotional",
+      "narrator": "profound"
+    },
+    {
+      "id": "chapter8_choice_instant",
+      "title": "立即回家",
+      "description": "\"我想回家，\"你说，\"我想念我的家人。\"\n\n🧚 小精灵点点头：\"这是可以理解的。\"\n\n🪄 一道光芒包围了你...\n\n✨ 你变回了原样！\n\n但就在这时，你看到雁群正在面临危险——一只猛禽正在攻击他们！\n\n\"不！\"你大喊，想要帮忙，但已经太晚了...\n\n❌ **普通结局：未完的使命**\n\n你回到了家，但心中总觉得少了些什么。你失去了证明自己成长的机会，也辜负了雁群的信任。\n\n也许，你应该做出不同的选择...",
+      "choices": [
+        {"text": "🔄 重新选择", "next_scene": "chapter8_intro"},
+        {"text": "📖 结束游戏", "next_scene": "ending_normal", "effects": {"size_change": 90}}
+      ]
+    },
+    {
+      "id": "chapter8_choice_stay",
+      "title": "留下来帮助",
+      "description": "\"我想留下来，\"你说，\"雁群需要我。而且，我想看看小雁们孵化。\"\n\n🦢 阿卡的眼睛湿润了：\"你...你真的愿意这么做？\"\n\n\"是的，\"你说，\"这段旅程让我明白，家不仅仅是一个地方，更是有朋友的地方。\"\n\n🧚 小精灵露出了欣慰的笑容：\"这才是真正的成长，小人儿。\"\n\n\"我会让你保持现在的样子，直到秋天。那时候，你就可以回家了。\"\n\n💖 整个夏天，你和雁群在一起。你见证了小雁的孵化，保护他们免受猛禽的攻击，教他们飞翔。\n\n你和莫顿的友谊变得更加深厚。你和尤西成为了最好的朋友。阿卡把你当作她的孙子一样爱护。\n\n🗓️ 秋天到了，是时候回家了。\n\n🧚 小精灵再次出现：\"你已经准备好回家了，小人儿。你已经学会了关爱生命，承担责任。你是一个真正的男子汉了。\"\n\n🪄 光芒包围了你...\n\n✨ 你变回了原样！\n\n\"再见，我的朋友们，\"你含着泪说。\n\n\"再见，尼尔斯，\"阿卡说，\"我们会永远记住你的。\"\n\n🦢 莫顿飞过来，轻轻碰了碰你的脸：\"谢谢你，我的朋友。\"\n\n你独自一人走回家，但心中不再感到孤独。你知道，无论你身在何处，这些朋友都会在你心中。\n\n当你回到家，父母惊讶地发现你变了——你变得更加成熟、善良、有责任感。\n\n\"我们的儿子真的长大了，\"母亲欣慰地说。\n\n💖 **良好结局：成长的代价**\n\n你回到了家，变回了原来的样子。虽然在旅途中有些自私的选择让你失去了一些机会，但你还是学到了宝贵的教训。\n\n最重要的是，你终于明白了——每个生命都值得尊重，善良和勇气是世界上最强大的力量。",
+      "choices": [
+        {"text": "📖 结束游戏", "next_scene": "ending_good", "effects": {"size_change": 90, "add_achievement": "🦢 雁群的朋友"}}
+      ]
+    },
+    {
+      "id": "chapter8_choice_forever",
+      "title": "永远保持小",
+      "description": "\"我想...我想永远保持现在的样子，\"你说，\"我想成为雁群的正式成员。\"\n\n🦢 阿卡惊讶地看着你：\"你确定吗？这意味着你永远无法回到人类的世界...\"\n\n\"我确定，\"你说，\"在人类世界，我只是一个普通的男孩。但在这里，我有朋友，我有目标，我有归属感。\"\n\n🧚 小精灵深深地看了你一眼：\"这是一个勇敢的选择，小人儿。这是真正的牺牲。\"\n\n\"我会实现你的愿望。\"\n\n🪄 光芒闪烁，然后消失。\n\n你仍然是拇指大小的样子，但你不再介意。\n\n🌟 **特殊结局：自由的灵魂**\n\n你选择了放弃人类的生活，成为了雁群的永久成员。\n\n从此以后，你和雁群一起飞翔，自由自在。你看到了世界的美景，经历了无数冒险。\n\n你和莫顿成为了永远的朋友。你和尤西一起长大。阿卡把你当作她的继承人培养。\n\n多年后，你成为了新的领头雁，带领着新一代的大雁们踏上旅程。\n\n虽然你永远无法回到人类世界，但你从未后悔。因为你找到了真正的自由和幸福。\n\n也许，在某个远方，有一个人在仰望天空时，会看到一群大雁飞过，领头的就是你——曾经的尼尔斯，现在的雁群领袖。\n\n🕊️ 这个结局充满了自由和牺牲的美好。",
+      "choices": [
+        {"text": "📖 结束游戏", "next_scene": "ending_special_free", "effects": {"add_achievement": "🕊️ 自由的灵魂"}}
+      ]
+    },
+    {
+      "id": "ending_good",
+      "title": "🌟 结局：成长",
+      "description": "📖 **你的旅程结束了**\n\n📊 **最终统计**\n根据你的选择，你的结局是：\n\n（游戏引擎会根据你的道德值、知识值、成就等计算具体结局）\n\n💖 **谢谢你游玩《尼尔斯骑鹅旅行记》**\n\n这是一个关于成长、勇气和善良的故事。希望这段旅程让你也学到了一些宝贵的东西。\n\n🔄 **想尝试其他结局？**\n你可以重新开始游戏，做出不同的选择，探索更多可能性！",
+      "choices": [
+        {"text": "🔄 重新开始", "next_scene": "start"},
+        {"text": "🚪 退出游戏", "next_scene": "exit"}
+      ]
+    },
+    {
+      "id": "ending_normal",
+      "title": "📖 结局：未完的使命",
+      "description": "📖 **你的旅程结束了**\n\n📊 **最终统计**\n根据你的选择，你的结局是：\n\n💖 **谢谢你游玩《尼尔斯骑鹅旅行记》**\n\n这是一个关于成长、勇气和善良的故事。希望这段旅程让你也学到了一些宝贵的东西。\n\n🔄 **想尝试其他结局？**\n你可以重新开始游戏，做出不同的选择，探索更多可能性！",
+      "choices": [
+        {"text": "🔄 重新开始", "next_scene": "start"},
+        {"text": "🚪 退出游戏", "next_scene": "exit"}
+      ]
+    },
+    {
+      "id": "ending_special_free",
+      "title": "🕊️ 特殊结局：自由的灵魂",
+      "description": "📖 **你的旅程以一个特殊的方式结束了**\n\n你选择了自由，放弃了人类的生活。这是一个勇敢而浪漫的选择。\n\n📊 **最终统计**\n你获得了成就：🕊️ 自由的灵魂\n\n💖 **谢谢你游玩《尼尔斯骑鹅旅行记》**\n\n这是一个关于成长、勇气和善良的故事。希望这段旅程让你也学到了一些宝贵的东西。\n\n🔄 **想尝试其他结局？**\n你可以重新开始游戏，做出不同的选择，探索更多可能性！",
+      "choices": [
+        {"text": "🔄 重新开始", "next_scene": "start"},
+        {"text": "🚪 退出游戏", "next_scene": "exit"}
+      ]
+    },
+    {
+      "id": "exit",
+      "title": "👋 再见！",
+      "description": "感谢游玩《尼尔斯骑鹅旅行记》文字冒险游戏！\n\n希望你享受这段旅程。\n\n再见！👋",
+      "choices": []
+    }
+  ]
+}
