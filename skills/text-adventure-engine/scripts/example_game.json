@@ -1,0 +1,655 @@
+{
+  "game_info": {
+    "title": "The Enchanted Journey",
+    "version": "2.0",
+    "author": "Your Name",
+    "description": "A magical adventure through a mysterious land where your choices shape the story."
+  },
+  "config": {
+    "knowledge_milestones": {
+      "50": "🔍 Curious Mind",
+      "100": "📚 Scholar",
+      "200": "🧠 Sage",
+      "500": "⭐ Master of Knowledge"
+    },
+    "auto_save_interval": 5
+  },
+  "endings": [
+    {
+      "id": "perfect_ending",
+      "tier": "perfect",
+      "title": "✨ Legendary Hero ✨",
+      "description": "Your wisdom, courage, and compassion have changed the kingdom forever. Songs will be sung of your deeds for generations to come.",
+      "requirements": {
+        "morality_min": 80,
+        "flag": ["crown_recovered", true],
+        "has_achievement": "⭐ Master of Knowledge"
+      }
+    },
+    {
+      "id": "good_ending",
+      "tier": "good",
+      "title": "🌟 Champion of the Realm 🌟",
+      "description": "You have proven yourself a true hero. The kingdom celebrates your victory, and peace returns to the land.",
+      "requirements": {
+        "morality_min": 60,
+        "flag": ["crown_recovered", true]
+      }
+    },
+    {
+      "id": "neutral_ending",
+      "tier": "neutral",
+      "title": "📖 A Journey Complete",
+      "description": "Your adventure has come to an end. While not all goals were achieved, you have grown from your experiences and learned valuable lessons.",
+      "requirements": {
+        "morality_min": 40
+      }
+    },
+    {
+      "id": "bad_ending",
+      "tier": "bad",
+      "title": "💔 The Weight of Regret",
+      "description": "The kingdom remains in darkness, and many opportunities were lost. Perhaps a different path next time...",
+      "requirements": {
+        "morality_max": 40
+      }
+    },
+    {
+      "id": "special_ending_wanderer",
+      "tier": "special",
+      "title": "🌙 The Eternal Wanderer",
+      "description": "You have chosen to remain in this magical world forever, exploring its mysteries and becoming one with its legends.",
+      "requirements": {
+        "flag": ["chose_to_stay", true]
+      }
+    }
+  ],
+  "scenes": [
+    {
+      "id": "start",
+      "title": "🎮 The Beginning",
+      "description": "Welcome to **The Enchanted Journey**, a text adventure where your choices matter.\n\nYou find yourself standing at the edge of an ancient forest. The trees whisper secrets, and a distant mountain looms against a crimson sky.\n\n📊 **Your journey will be shaped by:**\n• **Morality** - Your choices between good and selfish acts\n• **Knowledge** - Wisdom gained through exploration\n• **Gold** - Wealth acquired and spent\n• **Health** - Your well-being throughout the quest\n\n⚠️ **Multiple endings await** - from legendary hero to forgotten wanderer. Every decision counts.\n\nAre you ready to begin your adventure?",
+      "choices": [
+        {"text": "🚀 Begin the Journey", "next_scene": "forest_entrance"},
+        {"text": "📖 View Game Guide", "next_scene": "guide"},
+        {"text": "🏆 View Achievements", "next_scene": "achievements"}
+      ],
+      "music": "peaceful",
+      "narrator": "friendly"
+    },
+    {
+      "id": "guide",
+      "title": "📖 How to Play",
+      "description": "🎮 **Game Controls**\n\n1. Read each scene description carefully\n2. Choose from the available options\n3. Your choices affect:\n   • Story direction and available paths\n   • Your stats (health, morality, knowledge, gold)\n   • Which ending you receive\n\n📊 **Stats Explained**\n\n**❤️ Health (HP)**\n   Your physical condition. Some choices may reduce it.\n\n**💖 Morality (0-100)**\n   Most important stat! Determines your ending.\n   High = heroic choices, Low = selfish choices\n\n**🧠 Knowledge**\n   Wisdom gained. Unlock achievements at milestones.\n\n**💰 Gold**\n   Currency for trading and special choices.\n\n🎯 **Tips for Success**\n• Help others → High morality (good endings)\n• Explore everywhere → Gain knowledge\n• Save often → Don't lose progress\n• Think carefully → Choices have consequences",
+      "choices": [
+        {"text": "🔙 Return", "next_scene": "start"}
+      ]
+    },
+    {
+      "id": "achievements",
+      "title": "🏆 Achievements",
+      "description": "🌟 **Achievement List** 🌟\n\nComplete challenges to unlock achievements:\n\n🔍 **Curious Mind** - Knowledge reaches 50\n📚 **Scholar** - Knowledge reaches 100\n🧠 **Sage** - Knowledge reaches 200\n⭐ **Master of Knowledge** - Knowledge reaches 500\n\n🦸 **Hero** - Achieve good ending\n👑 **Legendary** - Achieve perfect ending\n💀 **Survivor** - Complete game with 1 HP\n💰 **Wealthy** - Accumulate 1000 gold\n🌙 **Wanderer** - Unlock secret ending\n\n(Keep playing to unlock these!)",
+      "choices": [
+        {"text": "🔙 Return", "next_scene": "start"}
+      ]
+    },
+    {
+      "id": "forest_entrance",
+      "title": "🌲 The Ancient Forest",
+      "description": "You stand before the entrance of the **Whispering Woods**. Ancient trees tower above you, their branches forming a canopy so thick that little light penetrates through.\n\nA weathered sign reads:\n> *\"Beware, traveler. The forest tests all who enter. Only the pure of heart may find the hidden path.\"*\n\nYou notice two paths ahead:\n\n🌿 **The Overgrown Trail** - Narrow but clear, leading deeper into the forest\n🏚️ **The Old Road** - Wider but in disrepair, heading toward what appears to be ruins\n\nA small creature—a fox with unusually bright fur—watches you from behind a bush.\n\nWhat do you do?",
+      "choices": [
+        {"text": "🌿 Take the overgrown trail into the forest", "next_scene": "forest_deep"},
+        {"text": "🏚️ Follow the old road toward the ruins", "next_scene": "forest_ruins"},
+        {"text": "🦊 Approach the fox cautiously", "next_scene": "fox_encounter"},
+        {"text": "🔍 Examine the sign more carefully", "next_scene": "forest_sign", "knowledge_gain": 5}
+      ],
+      "music": "mystery",
+      "narrator": "neutral"
+    },
+    {
+      "id": "forest_sign",
+      "title": "🪧 The Weathered Sign",
+      "description": "You examine the sign more closely. Beneath the warning, you notice faded carvings—ancient runes that seem to shimmer slightly in the dim light.\n\n📚 **Knowledge Gained: Ancient Runes**\n\nThe runes tell of three trials:\n1. **The Trial of Courage** - Face your fears\n2. **The Trial of Compassion** - Help those in need\n3. **The Trial of Wisdom** - Solve the riddle\n\nThose who pass all three will find the **Crown of Stars**, an artifact of great power.\n\n🔮 *This knowledge may prove valuable...*",
+      "choices": [
+        {"text": "🌿 Continue on the overgrown trail", "next_scene": "forest_deep"},
+        {"text": "🏚️ Head toward the ruins", "next_scene": "forest_ruins"},
+        {"text": "🦊 Approach the watching fox", "next_scene": "fox_encounter"}
+      ],
+      "effects": {"set_flag": {"knows_runes": true}}
+    },
+    {
+      "id": "fox_encounter",
+      "title": "🦊 The Mysterious Fox",
+      "description": "You slowly approach the fox. To your surprise, it doesn't run away.\n\n\"You're different from the others,\" the fox says—**it speaks!**\n\n\"Most travelers rush past, intent on their own goals. But you... you noticed me.\"\n\nThe fox sits up, its intelligent eyes studying you.\n\n\"I am **Felix**, guardian of these woods. I can help you on your journey—for a price.\"\n\n🦊 **Felix offers you a deal:**\n\"I will guide you through the forest safely. In exchange, you must help me with a small task later. Do we have an agreement?\"",
+      "choices": [
+        {
+          "text": "🤝 \"I agree. Thank you, Felix!\"",
+          "next_scene": "fox_guide_joined",
+          "morality_change": 5,
+          "effects": {"set_flag": {"felix_ally": true}}
+        },
+        {
+          "text": "🤔 \"What kind of task? Tell me more first.\"",
+          "next_scene": "fox_task_explained",
+          "knowledge_gain": 5
+        },
+        {
+          "text": "🚫 \"I don't make deals with strangers.\"",
+          "next_scene": "fox_refused",
+          "morality_change": -5
+        },
+        {
+          "text": "💰 \"I can pay you instead.\" (Requires 50 gold)",
+          "next_scene": "fox_paid",
+          "requirements": {"gold_min": 50},
+          "effects": {"gold_change": -50, "set_flag": {"felix_ally": true}}
+        }
+      ],
+      "music": "mystery",
+      "narrator": "friendly"
+    },
+    {
+      "id": "fox_refused",
+      "title": "🦊 Felix Disappointed",
+      "description": "Felix sighs, his ears drooping slightly.\n\n\"A shame. Trust is rare these days. Very well—go your own way. But know this: the forest is dangerous to those without friends.\"\n\nHe disappears into the undergrowth without another sound.\n\n😔 You feel a pang of regret...",
+      "choices": [
+        {"text": "🌿 Continue into the forest alone", "next_scene": "forest_deep"},
+        {"text": "🏚️ Head toward the ruins", "next_scene": "forest_ruins"}
+      ]
+    },
+    {
+      "id": "fox_task_explained",
+      "title": "🦊 The Task Revealed",
+      "description": "Felix nods approvingly. \"Wise to ask.\"\n\n\"My daughter was captured by a **goblin merchant** who travels these roads. She has... special abilities that make her valuable to those who would exploit her.\"\n\nHis voice trembles with suppressed emotion.\n\n\"I cannot approach the merchant's camp alone—they will recognize me. But you... you are unknown to them. You could infiltrate and help her escape.\"\n\n\"Please, will you help me?\"",
+      "choices": [
+        {
+          "text": "🤝 \"Of course I'll help! Family must be protected.\"",
+          "next_scene": "fox_guide_joined",
+          "morality_change": 15,
+          "effects": {"set_flag": {"felix_ally": true, "promised_rescue": true}}
+        },
+        {
+          "text": "🤔 \"I'll think about it. For now, guide me safely.\"",
+          "next_scene": "fox_guide_joined",
+          "effects": {"set_flag": {"felix_ally": true}}
+        },
+        {
+          "text": "🚫 \"That's too dangerous. Count me out.\"",
+          "next_scene": "fox_refused",
+          "morality_change": -10
+        }
+      ]
+    },
+    {
+      "id": "fox_paid",
+      "title": "🦊 A Business Arrangement",
+      "description": "Felix's eyes light up as you count out the gold coins.\n\n\"Ah, a practical sort! Very well, consider me hired. This way...\"\n\nHe leads you confidently through the forest, taking paths you never would have noticed on your own.\n\n💰 *Gold opens many doors, but not all...*",
+      "choices": [
+        {"text": "➡️ Follow Felix", "next_scene": "forest_guided"}
+      ]
+    },
+    {
+      "id": "fox_guide_joined",
+      "title": "🦊 A New Companion",
+      "description": "Felix smiles—a surprisingly human expression.\n\n\"Excellent! Follow me, friend. I know the safest paths through these woods.\"\n\n🌟 **New Ally Acquired: Felix**\n\nThe fox-guide leads you confidently through the forest. He points out hidden dangers and shows you shortcuts through the dense undergrowth.\n\n\"You know,\" he says as you walk, \"these woods have seen many adventurers. Most are after the **Crown of Stars**. But few understand its true purpose.\"\n\n\"It's not just treasure—it's a responsibility. The crown chooses its wearer based on the purity of their heart.\"\n\n📚 *Knowledge flows freely among friends...*",
+      "choices": [
+        {"text": "❓ \"Tell me more about the Crown of Stars\"", "next_scene": "fox_crown_lore"},
+        {"text": "➡️ Continue quietly through the forest", "next_scene": "forest_guided"}
+      ],
+      "effects": {"knowledge_gain": 10}
+    },
+    {
+      "id": "fox_crown_lore",
+      "title": "📜 Legend of the Crown",
+      "description": "Felix's voice takes on the cadence of a storyteller:\n\n\"Long ago, when darkness threatened to consume the land, the **Star People** descended from the heavens. They created the Crown of Stars to channel celestial power against the darkness.\"\n\n\"The crown was wielded by **Aurelia the First**, the greatest queen our land has known. Under her rule, magic and technology flourished side by side.\"\n\n\"But when she died, the crown was hidden. It can only be found by one who passes three trials: Courage, Compassion, and Wisdom.\"\n\nFelix looks at you significantly.\n\n\"These aren't just tests—they're lessons. The crown doesn't make someone worthy. It reveals who was worthy all along.\"\n\n🌟 **Knowledge +20**\n\nYou feel a deeper understanding of your quest...",
+      "choices": [
+        {"text": "🙏 \"Thank you for sharing this wisdom.\"", "next_scene": "forest_guided"},
+        {"text": "❓ \"What happened to Aurelia's kingdom?\"", "next_scene": "fox_kingdom_lore"}
+      ],
+      "effects": {"knowledge_gain": 20}
+    },
+    {
+      "id": "fox_kingdom_lore",
+      "title": "📚 The Fall of Aurelia",
+      "description": "Felix's expression grows somber.\n\n\"Aurelia's kingdom... it didn't fall to enemies, but to its own corruption.\"\n\n\"Her successors grew arrogant. They used the crown's power for personal gain rather than protection. The Star People saw this and—some say—cursed the land.\"\n\n\"The crown vanished. The kingdom fractured. And now, the **Shadow King** rises in the East, seeking to complete what Aurelia's heirs began.\"\n\n\"Unless...\" Felix glances at you, \"unless someone can find the crown first. Someone worthy.\"\n\n🌟 **Knowledge +15**\n\nThe weight of your journey settles on your shoulders...",
+      "choices": [
+        {"text": "😤 \"I will not let the Shadow King win.\"", "next_scene": "forest_guided", "morality_change": 5},
+        {"text": "😰 \"This is... a lot to take in.\"", "next_scene": "forest_guided"}
+      ],
+      "effects": {"knowledge_gain": 15, "set_flag": {"knows_history": true}}
+    },
+    {
+      "id": "forest_guided",
+      "title": "🌲 The Guided Path",
+      "description": "With Felix as your guide, the forest seems less threatening. He navigates confidently around hidden pits, patches of poisonous plants, and territories of dangerous creatures.\n\n🦊 \"Here,\" he says, stopping at a clearing. \"You need to see this.\"\n\nBefore you spreads a breathtaking view: the entire forest valley below, and in the distance, a mountain peak wreathed in clouds.\n\n\"That's **Starlight Peak**—where the Crown awaits. But the path is treacherous. Look—\"\n\nHe points out three possible routes:\n\n1. **The Direct Path** - Steep but fast, filled with physical dangers\n2. **The Ancient Highway** - Longer but safer, requires solving puzzles\n3. **The Hidden Trail** - Known only to locals, needs a guide",
+      "choices": [
+        {"text": "⛰️ Take the direct path up the mountain", "next_scene": "mountain_direct", "flag_not_set": "felix_ally"},
+        {"text": "🛤️ Follow the ancient highway", "next_scene": "mountain_highway"},
+        {
+          "text": "🦊 Ask Felix to show you the hidden trail",
+          "next_scene": "mountain_hidden",
+          "requirements": {"flag": ["felix_ally", true]},
+          "effects": {"set_flag": {"secret_path": true}}
+        }
+      ]
+    },
+    {
+      "id": "forest_deep",
+      "title": "🌲 Deep in the Woods",
+      "description": "You venture deeper into the forest alone. The path becomes increasingly difficult to follow, and strange sounds echo around you.\n\nWithout a guide, you must rely on your wits...\n\n🎲 **Roll for luck...**\n\nYou suddenly realize you've been walking in circles. The trees seem to shift when you're not looking directly at them.\n\n❤️ **Health -10** (from exhaustion and anxiety)\n\nAhead, you spot a clearing with a small cottage. Smoke rises from its chimney.\n\n🏠 Could this be a place of refuge? Or another danger?",
+      "choices": [
+        {"text": "🏠 Approach the cottage cautiously", "next_scene": "cottage_encounter"},
+        {"text": "🌲 Try to find another path through the forest", "next_scene": "forest_lost", "hp_change": -10}
+      ]
+    },
+    {
+      "id": "forest_lost",
+      "title": "😰 Lost in the Woods",
+      "description": "You attempt to navigate the forest without the cottage, but the ancient woods have other plans.\n\nThe path vanishes. The trees close in. You're completely, utterly lost.\n\n❤️ **Health -10**\n\nAs night falls, you hear howls in the distance. You need shelter—fast.\n\nYou spot a small cave entrance nearby. It looks dark, but it's protection from the elements and whatever prowls the night.\n\n🦊 From the shadows, Felix appears.\n\n\"You're stubborn, I'll give you that,\" he says with a mix of annoyance and concern. \"Come. My den is close.\"\n\n🌟 **Felix joins you despite your earlier refusal**\n\nThis time, you accept his help gratefully.",
+      "choices": [
+        {"text": "🙏 Thank Felix and follow him", "next_scene": "fox_den_safety"}
+      ]
+    },
+    {
+      "id": "fox_den_safety",
+      "title": "🦲 Safe at Last",
+      "description": "Felix's den is cozy—a hollow beneath an ancient tree, lined with soft moss and dried leaves. He shares food with you and tends to your minor injuries.\n\n❤️ **Health +20**\n\n\"You're lucky I found you,\" he says. \"The woods claim those who travel alone.\"\n\nHe studies you for a moment.\n\n\"You have a purpose, don't you? I can see it in your eyes. The Crown?\"\n\nWhen you nod, he sighs.\n\n\"Very well. I'll guide you to Starlight Peak. But we do things my way. Agreed?\"",
+      "choices": [
+        {
+          "text": "🤝 \"Agreed. Thank you, Felix.\"",
+          "next_scene": "forest_guided",
+          "morality_change": 5,
+          "effects": {"set_flag": {"felix_ally": true}}
+        }
+      ],
+      "effects": {"hp_change": 20, "set_flag": {"felix_ally": true}}
+    },
+    {
+      "id": "cottage_encounter",
+      "title": "🏠 The Witch's Cottage",
+      "description": "You approach the cottage cautiously. The door opens before you can knock.\n\nAn elderly woman stands there, her eyes cloudy with cataracts but somehow seeing right through you.\n\n\"Ah, a traveler,\" she says. \"Come in, come in. I've been expecting you.\"\n\nThe interior is cramped but filled with interesting objects: bubbling potions, dusty books, strange artifacts.\n\n🧙‍♀️ **The Witch's Offer**\n\n\"I am **Madame Zora**,\" she says. \"I can help you on your quest—for a price.\"\n\n\"Choose one:**\n1. **A healing potion** - Restores 50 HP immediately\n2. **Ancient knowledge** - Reveals the Crown's location\n3. **A warning** - Tells you which path is safest\n\nEach costs something different...",
+      "choices": [
+        {
+          "text": "❤️ Ask for the healing potion (Cost: 10 HP for future scenes)",
+          "next_scene": "cottage_potion",
+          "effects": {"hp_change": 50, "set_flag": {"purchased_potion": true}},
+          "requirements": {"hp_max": 90}
+        },
+        {
+          "text": "📚 Ask for ancient knowledge (Cost: Your name)",
+          "next_scene": "cottage_knowledge",
+          "effects": {"knowledge_gain": 50, "set_flag": {"gave_name": true}}
+        },
+        {
+          "text": "⚠️ Ask for the warning (Cost: A secret)",
+          "next_scene": "cottage_warning",
+          "effects": {"set_flag": {"gave_secret": true}}
+        },
+        {
+          "text": "🚫 \"I want nothing from witches.\" (Leave)",
+          "next_scene": "cottage_refused",
+          "morality_change": -5
+        }
+      ]
+    },
+    {
+      "id": "cottage_potion",
+      "title": "🧪 The Healing Potion",
+      "description": "Madame Zora nods and produces a shimmering blue potion.\n\n\"Drink this, and your wounds will heal. But know this—magic always has a cost. The strength I give you now, I take from your future.\"\n\n\"Your health will be reduced by 10 points permanently. A small price for life, no?\"\n\nYou drink the potion. Warmth spreads through your body, knitting your wounds.\n\n❤️ **Health +50 (permanent -10 thereafter)**\n\n\"Farewell, traveler,\" Zora says. \"Remember: not all magic is benevolent. Trust your heart above all.\"\n\nYou leave the cottage feeling stronger—but somehow diminished.\n\n⚠️ *Magic always has a price...*",
+      "choices": [
+        {"text": "🌲 Continue into the forest", "next_scene": "forest_guided"}
+      ],
+      "effects": {"hp_change": 50, "set_flag": {"health_curse": true}}
+    },
+    {
+      "id": "cottage_knowledge",
+      "title": "📚 Ancient Knowledge Revealed",
+      "description": "\"Your name...\" Zora repeats slowly. \"Very well.\"\n\nShe takes a dusty book from her shelf and opens it to a page showing an ancient map.\n\n\"The Crown of Stars lies in three pieces, hidden across the land. You must find them all and reunite them at the peak of Starlight Mountain during the **Eclipse**—which occurs in three days.\"\n\n\"The first piece is in the **Ruins of Light** to the east.\"\n\n\"The second is with the **Sky People** who live in the clouds.\"\n\n\"The third... the third is protected by a **dragon** in the Cavern of Echoes.\"\n\n🌟 **Knowledge +50**\n\nThis is invaluable information!",
+      "choices": [
+        {"text": "🙏 \"Thank you, Madame Zora.\" (Leave)", "next_scene": "forest_guided", "morality_change": 5}
+      ],
+      "effects": {"knowledge_gain": 50, "set_flag": {"knows_crown_location": true}}
+    },
+    {
+      "id": "cottage_warning",
+      "title": "⚠️ The Witch's Warning",
+      "description": "You tell Zora your secret—something you've never told another living soul.\n\nShe listens intently, then nods.\n\n\"A fair trade. Here is my warning:\"\n\n\"The **Shadow King** has agents everywhere. Someone close to you may not be what they seem. Trust only those who have proven themselves through action, not words.\"\n\n\"And beware the **Mirror of Truth**—it shows not who you are, but who you could become. Your darkest self... or your brightest.\"\n\n\"Go now. And remember this warning when the time comes.\"\n\nYou leave the cottage, her words echoing in your mind.\n\n⚠️ *Trust no one until they prove themselves...*",
+      "choices": [
+        {"text": "🌲 Continue on your journey", "next_scene": "forest_guided"}
+      ],
+      "effects": {"set_flag": {"received_warning": true}}
+    },
+    {
+      "id": "cottage_refused",
+      "title": "🚫 Refusing the Witch",
+      "description": "\"I want nothing from witches,\" you say firmly.\n\nZora's expression darkens. \"Then leave. But know this: the forest shows no mercy to those who refuse help.\"\n\nAs you walk away, you hear her muttering: \"Pride... always pride... The downfall of so many heroes.\"\n\nThe forest seems darker now. More threatening.\n\nWithout help, the journey ahead will be much harder...",
+      "choices": [
+        {"text": "😰 Continue nervously into the forest", "next_scene": "forest_lost"}
+      ]
+    },
+    {
+      "id": "forest_ruins",
+      "title": "🏛️ The Ancient Ruins",
+      "description": "You follow the old road toward the ruins. As you approach, you realize this was once a magnificent temple—columns rise from the undergrowth, and faded murals adorn cracked walls.\n\n📚 **Knowledge +10**\n\nIn the center of the ruins stands a stone altar. Upon it rests a small, glowing crystal.\n\n🔮 **The Crystal of Insight**\n\nA voice echoes in your mind: *\"Touch me, and see your true potential...\"*\n\n**WARNING**: This is a permanent choice that will affect your journey.",
+      "choices": [
+        {
+          "text": "✨ Touch the crystal",
+          "next_scene": "crystal_touched",
+          "effects": {
+            "add_achievement": "🔮 Touched Destiny",
+            "set_flag": {"touched_crystal": true},
+            "knowledge_gain": 25
+          }
+        },
+        {
+          "text": "🚫 Step away and continue exploring the ruins",
+          "next_scene": "ruins_exploration",
+          "knowledge_gain": 15
+        }
+      ],
+      "effects": {"knowledge_gain": 10}
+    },
+    {
+      "id": "crystal_touched",
+      "title": "✨ Visions of Fate",
+      "description": "Your fingers brush the crystal...\n\n**FLASH!**\n\nYou see visions—possible futures:\n\n👑 **Vision One**: You stand crowned, people cheering, peace restored to the land\n\n💀 **Vision Two**: You wield dark power, the kingdom in ruins around you\n\n🏠 **Vision Three**: You live simply in a small cottage, loved and loved again, forgotten by history but happy\n\n🌙 **Vision Four**: You wander eternally, a timeless being, exploring infinite worlds\n\nThe visions fade. You stand in the ruins, changed.\n\n🔮 **The crystal showed you possibilities. Now you must choose which future to make real.**\n\n🌟 **Achievement Unlocked: Touched Destiny**\n\nYou feel... different. As if your choices now carry greater weight.",
+      "choices": [
+        {"text": "😤 \"I will be a hero.\" (Vison One)", "next_scene": "ruins_aftermath", "morality_change": 10},
+        {"text": "😈 \"Power is what matters.\" (Vision Two)", "next_scene": "ruins_aftermath", "morality_change": -20},
+        {"text": "😊 \"Happiness is enough.\" (Vision Three)", "next_scene": "ruins_aftermath"},
+        {"text": "🌙 \"I want to see everything.\" (Vision Four)", "next_scene": "ruins_aftermath", "effects": {"set_flag": {"destined_wanderer": true}}}
+      ],
+      "effects": {"add_achievement": "🔮 Touched Destiny", "knowledge_gain": 25}
+    },
+    {
+      "id": "ruins_exploration",
+      "title": "🔍 Exploring the Ruins",
+      "description": "You choose not to touch the crystal. A wise decision—or a missed opportunity?\n\nYou continue exploring the ruins, discovering:\n\n📜 **Ancient murals** depicting the history of the Star People\n💰 **A hidden cache** containing 25 gold\n🗡️ **An old sword** (still sharp despite its age)\n\n🌟 **+25 Gold, +10 Knowledge**\n\nYou also find inscriptions that hint at the trials ahead:\n\n> *\"Courage is not absence of fear, but action despite it.\"*\n> *\"Compassion costs nothing, but means everything.\"*\n> *\"Wisdom begins with knowing that you know nothing.\"*\n\n📚 **Knowledge +10**\n\nFeeling enriched, you prepare to continue your journey.",
+      "choices": [
+        {"text": "🌲 Leave the ruins and head for the mountain", "next_scene": "forest_guided"}
+      ],
+      "effects": {"gold_change": 25, "knowledge_gain": 10, "add_item": "old_sword"}
+    },
+    {
+      "id": "ruins_aftermath",
+      "title": "🌟 After the Vision",
+      "description": "The crystal's glow fades, but the visions remain etched in your memory.\n\nYou explore the rest of the ruins, finding:\n\n💰 **50 gold** in a hidden cache\n🗡️ **An ancient sword** that hums with power\n\nThe sword seems to respond to your presence—perhaps it senses the change in you.\n\n\"Use me well,\" it seems to whisper. \"I have waited centuries for a worthy wielder.\"\n\n🌟 **+50 Gold, New Item: Starlight Sword**\n\nYou feel ready for whatever lies ahead.",
+      "choices": [
+        {"text": "➡️ Continue to Starlight Mountain", "next_scene": "mountain_approach"}
+      ],
+      "effects": {"gold_change": 50, "add_item": "starlight_sword"}
+    },
+    {
+      "id": "mountain_direct",
+      "title": "⛰️ The Direct Path",
+      "description": "You choose the direct, steep path up the mountain. It's grueling work—every step is a battle against gravity and exhaustion.\n\n❤️ **Health -15**\n\nHalfway up, you encounter a **rock slide**! Boulders tumble toward you!\n\n🎲 **Quick reflexes save you, but...**\n❤️ **Health -10**\n\nYou're battered but alive. The path continues upward, now even steeper.\n\nBut wait—you spot someone ahead, trapped by the rocks!\n\n🆘 A fellow traveler lies pinned beneath a boulder, calling for help.",
+      "choices": [
+        {
+          "text": "🦸 Help the trapped traveler",
+          "next_scene": "mountain_rescue",
+          "morality_change": 15
+        },
+        {
+          "text": "😈 Leave them and continue upward (Selfish)",
+          "next_scene": "mountain_summit",
+          "morality_change": -20,
+          "effects": {"set_flag": {"left_to_die": true}}
+        }
+      ],
+      "effects": {"hp_change": -25}
+    },
+    {
+      "id": "mountain_rescue",
+      "title": "🦸 The Rescue",
+      "description": "You rush to help the trapped traveler.\n\nTogether, you manage to lift the boulder just enough to free them.\n\n\"Thank you!\" they gasp. \"I thought I was done for!\"\n\nIt's a young woman with kind eyes and grateful smile.\n\n\"I'm **Elara**,\" she says. \"I'm a healer. Let me repay you—\"\n\nShe places her hands on your injuries. Warm light flows from her palms.\n\n❤️ **Health +30**\n\n\"I'm heading to the summit too,\" Elara says. \"Would you like company?\"\n\n🌟 **New Ally: Elara the Healer**",
+      "choices": [
+        {
+          "text": "🤝 \"I'd be grateful for the company.\"",
+          "next_scene": "mountain_summit",
+          "effects": {"set_flag": {"elara_ally": true}},
+          "morality_change": 5
+        },
+        {
+          "text": "🚶 \"I prefer to travel alone. But thank you.\"",
+          "next_scene": "mountain_summit"
+        }
+      ],
+      "effects": {"hp_change": 30, "set_flag": {"rescued_elara": true}}
+    },
+    {
+      "id": "mountain_highway",
+      "title": "🛤️ The Ancient Highway",
+      "description": "You follow the ancient highway—a marvel of engineering from a forgotten age. The road is paved with stones that still fit perfectly together despite millennia of weather.\n\n📚 **Knowledge +15**\n\nThe path is easier, but not without challenges. Periodic puzzles block your way:\n\n🔮 **Puzzle One**: \"I have cities, but no houses. I have mountains, but no trees. I have water, but no fish. What am I?\"\n\n(You study the ancient inscriptions...)\n\n**Answer: A MAP!**\n\nA secret passage opens!\n\n🧩 **Puzzle Two**: A series of symbols must be arranged in the correct order.\n\n(Using your knowledge of ancient scripts, you solve it...)\n\n🌟 **Knowledge +20**\n\nThe ancient builders were clever—this road tests as much as it transports.",
+      "choices": [
+        {"text": "➡️ Continue along the highway", "next_scene": "mountain_approach"}
+      ],
+      "effects": {"knowledge_gain": 35}
+    },
+    {
+      "id": "mountain_hidden",
+      "title": "🦊 The Hidden Trail",
+      "description": "Felix leads you along a path invisible to all but those who know what to look for.\n\n\"This trail was used by the **Star People**,\" he explains. \"They could walk between worlds using paths like this.\"\n\nThe journey is almost pleasant—you see beautiful vistas and encounter no dangers.\n\nAt one point, Felix stops and points out a cave.\n\n\"In there lives a hermit—**The Last Star Watcher**. He guarded the Crown for a thousand years before disappearing. Some say he's still here, watching and waiting.\"\n\n🤔 **Do you want to meet him?**",
+      "choices": [
+        {
+          "text": "👤 \"Yes, let's meet this hermit.\"",
+          "next_scene": "star_watcher_meeting",
+          "knowledge_gain": 10
+        },
+        {
+          "text": "⛰️ \"No, let's continue to the summit.\"",
+          "next_scene": "mountain_approach"
+        }
+      ]
+    },
+    {
+      "id": "star_watcher_meeting",
+      "title": "👤 The Last Star Watcher",
+      "description": "You enter the cave. It's larger inside than it appeared from outside, filled with strange devices that pulse with inner light.\n\nAn ageless figure sits in meditation. As you approach, his eyes open—eyes like actual stars, swirling with cosmic energy.\n\n\"You've come far, little one,\" he says. \"I've been waiting for you.\"\n\n\"I am **Orion**, last of the Star Watchers. For a millennium, I guarded the Crown. But now... my time ends.\"\n\n\"Listen carefully, for what I tell you, you will hear nowhere else:\"\n\n🔮 **The Revelation**\n\n\"The Crown is not a treasure—it is a **responsibility**. To wear it is to become a guardian of the barrier between worlds.\"\n\n\"The Shadow King is not truly evil—he is **balance**. Light cannot exist without dark. The Crown maintains the balance.\"\n\n\"Your task is not to 'defeat' darkness, but to **restore balance**.\"\n\n🌟 **Knowledge +50**\n\nThis changes everything...",
+      "choices": [
+        {
+          "text": "🙏 \"I understand. Thank you, Orion.\"",
+          "next_scene": "mountain_approach",
+          "effects": {"set_flag": {"knows_truth": true}},
+          "morality_change": 10
+        },
+        {
+          "text": "❓ \"But the Shadow King threatens the kingdom!\"", "next_scene": "orion_explains"}
+      ],
+      "effects": {"knowledge_gain": 50, "set_flag": {"met_orion": true}}
+    },
+    {
+      "id": "orion_explains",
+      "title": "🌟 The Truth Revealed",
+      "description": "Orion smiles sadly.\n\n\"The kingdom is already falling, child. The Crown has been missing for too long. Balance is already broken.\"\n\n\"The Shadow King rises because Light has become too strong—too arrogant, too certain of its own righteousness.\"\n\n\"Think about it: Those who call themselves 'heroes' have caused as much suffering as those they fight. The Crown's previous bearers grew corrupt with power.\"\n\n\"True balance requires understanding that light and dark are **both necessary**. Neither is 'good' or 'evil'—they **are**.\"\n\n\"The Shadow King seeks the Crown not to destroy light, but to **restore balance**. His methods are harsh, but his goal is just.\"\n\n\"Your task is not to defeat him, but to **reason** with him. To show him that balance can be achieved without suffering.\"\n\n\"Will you be the one to finally unite light and shadow?\"\n\n🌟 **Knowledge +30**\n\nYou've been given a sacred duty...",
+      "choices": [
+        {"text": "🤝 \"I will unite light and shadow.\"", "next_scene": "mountain_approach", "effects": {"set_flag": {"chosen_balance": true}}, "morality_change": 15},
+        {"text": "😤 \"I don't believe you. The Shadow King is evil.\"", "next_scene": "mountain_approach"}
+      ],
+      "effects": {"knowledge_gain": 30}
+    },
+    {
+      "id": "mountain_approach",
+      "title": "⛰️ Starlight Peak Approaches",
+      "description": "You continue your ascent. The air grows thin, and the sky turns from blue to violet to black—stars becoming visible even though it's still day.\n\n📚 **Knowledge +15**\n\nAhead, you see the summit of Starlight Peak. It glows with an otherworldly light.\n\nBut something blocks your path—a massive figure in dark armor.\n\n👿 **The Shadow General**\n\n\"Go no further!\" he booms. \"None may pass unless they defeat me in combat!\"\n\nHe draws a massive black sword.\n\n**⚔️ BOSS BATTLE: Shadow General**\n\nYou must choose how to face this challenge:",
+      "choices": [
+        {
+          "text": "⚔️ Fight him with your sword (Combat)",
+          "next_scene": "battle_combat",
+          "requirements": {"has_any_item": ["old_sword", "starlight_sword"]}
+        },
+        {
+          "text": "🧠 Try to outsmart him (Puzzle)",
+          "next_scene": "battle_puzzle",
+          "requirements": {"knowledge_min": 50}
+        },
+        {
+          "text": "💬 Talk to him (Diplomacy)",
+          "next_scene": "battle_talk"
+        },
+        {
+          "text": "🏃 Try to sneak past (Stealth)",
+          "next_scene": "battle_stealth"
+        }
+      ],
+      "effects": {"knowledge_gain": 15}
+    },
+    {
+      "id": "battle_combat",
+      "title": "⚔️ The Battle",
+      "description": "You draw your weapon and charge!\n\n**CLANG!**\n\nThe Shadow General is impossibly strong. Your arms ache from parrying his blows.\n\n❤️ **Health -20**\n\nBut you notice something—his movements are precise, almost mechanical. As if he's following a program rather than fighting with free will.\n\n🧠 **Knowledge check...**\n\nHe's a **construct**! Not a living being!\n\nYou adjust your tactics, aiming for the glowing gem on his chest—the power source.\n\n**CRITICAL HIT!**\n\nThe general shudders and collapses, inert.\n\n🌟 **Victory!**",
+      "choices": [
+        {"text": "➡️ Continue to the summit", "next_scene": "summit_arrival"}
+      ],
+      "effects": {"hp_change": -20, "set_flag": {"defeated_general": true}}
+    },
+    {
+      "id": "battle_puzzle",
+      "title": "🧠 The Riddle of the General",
+      "description": "You raise your hands peacefully.\n\n\"Before we fight, answer me this: What is your purpose?\"\n\nThe Shadow General pauses. \"I... I serve the Shadow King. I guard the peak.\"\n\n\"But why?\" you press. \"What happens if I pass?\"\n\n\"Then... then I...\" The general's eyes flicker with confusion. \"I... don't know.\"\n\nYou press the advantage: \"Have you ever questioned your orders? Have you ever wondered if there's another way?\"\n\nThe general's massive frame begins to shake. Programming conflicts with awakening awareness.\n\n\"I... I...\"\n\n**BOOM!**\n\nThe general overloads and collapses, his consciousness unable to resolve the paradox.\n\n🌟 **Victory through Wisdom!**",
+      "choices": [
+        {"text": "😔 \"Rest in peace, warrior.\"", "next_scene": "summit_arrival", "morality_change": 5}
+      ],
+      "effects": {"knowledge_gain": 25, "set_flag": {"freed_general": true}}
+    },
+    {
+      "id": "battle_talk",
+      "title": "💬 Words Over Weapons",
+      "description": "\"We don't have to fight,\" you say. \"I'm not here to cause trouble. I'm here to restore balance.\"\n\nThe Shadow General hesitates. \"Balance? What do you know of balance?\"\n\n\"I know that light and shadow are both necessary,\" you reply. \"I know that the Crown exists not to defeat darkness, but to maintain harmony between light and dark.\"\n\nThe general lowers his sword.\n\n\"You... you speak the words of the Old Watchers. How do you know this?\"\n\n\"Orion sent me,\" you explain (if you met him) or \"I've learned much on my journey.\" (if not)\n\nThe general studies you for a long moment.\n\n\"Very well. You may pass. But know this—the Shadow King will test you as he has tested all who came before. Are you ready?\"",
+      "choices": [
+        {"text": "✅ \"I'm ready.\"", "next_scene": "summit_arrival", "effects": {"set_flag": {"spared_general": true}}},
+        {"text": "❓ \"What kind of test?\"", "next_scene": "general_explains"}
+      ],
+      "effects": {"morality_change": 10}
+    },
+    {
+      "id": "general_explains",
+      "title": "📜 The Test Revealed",
+      "description": "\"The Shadow King was once a hero like you,\" the general explains. \"He bore the Crown and used it to create what he thought was a perfect world—a world of eternal light.\" \"But he learned that without darkness, there is no rest. Without shadow, there is no perspective. His 'utopia' became a prison.\" \"He seeks the Crown again—not to destroy light, but to find the balance he failed to achieve before.\" \"But he has forgotten that balance requires **understanding**, not domination.\" \"He will test you: Can you hold both light and shadow in your heart? Can you accept that both are necessary?\" \"Many have failed this test. Will you be different?\"",
+      "choices": [
+        {
+          "text": "✨ \"I understand. I won't fail.\"",
+          "next_scene": "summit_arrival",
+          "effects": {
+            "set_flag": {"spared_general": true, "understands_balance": true},
+            "knowledge_gain": 20,
+            "morality_change": 10
+          }
+        }
+      ],
+      "effects": {"knowledge_gain": 20}
+    },
+    {
+      "id": "battle_stealth",
+      "title": "🏃 The Sneaky Approach",
+      "description": "While the general is distracted, you attempt to slip past!\n\n🎲 **Stealth check...**\n\nYou creep from rock to rock, holding your breath...\n\nAlmost there...\n\n**CRUNCH!**\n\nYou stepped on a twig!\n\nThe general spins around. \"Coward! Face me!\"\n\nYou run for it, scrambling up the slope as fast as you can.\n\n❤️ **Health -10** (from the frantic climb)\n\nSomehow, you make it! The general can't follow on the steep terrain.\n\n🌟 **Success... but at what cost?**\n\nYou avoided confrontation, but you feel like you cheated somehow...",
+      "choices": [
+        {"text": "➡️ Continue to the summit", "next_scene": "summit_arrival"}
+      ],
+      "effects": {"hp_change": -10, "set_flag": {"avoided_general": true}}
+    },
+    {
+      "id": "mountain_summit",
+      "title": "⛰️ Continuing the Climb",
+      "description": "You continue upward, the air getting thinner and the sky darker.\n\nThe path becomes steeper, but you press on—driven by purpose (or perhaps the memory of those you left behind).\n\n⚠️ *The weight of your choices presses on you...*",
+      "choices": [
+        {"text": "➡️ Continue to the summit", "next_scene": "summit_arrival"}
+      ]
+    },
+    {
+      "id": "summit_arrival",
+      "title": "✨ The Summit of Starlight Peak",
+      "description": "You stand at the summit of Starlight Peak.\n\nBefore you floats the **Crown of Stars**—a circlet of pure light, pulsing with cosmic energy. Around it, reality itself seems to shimmer.\n\n🌌 **The Crown speaks to you:**\n\n\"Mortal child. You have come far. You have faced trials. You have made choices—some noble, some selfish.\"\n\n\"Now, make your final choice:\"\n\n**Option 1:** Take the Crown and become the new Guardian of Balance\n**Option 2:** Refuse the Crown and return to your old life\n**Option 3:** Merge with the Crown and become something... else\n\n\"Choose wisely, for this decision is irrevocable.\"",
+      "choices": [
+        {
+          "text": "👑 \"I accept the responsibility. I will be the Guardian.\"",
+          "next_scene": "ending_guardian"
+        },
+        {
+          "text": "🚶 \"I'm not ready. I need to grow more.\"",
+          "next_scene": "ending_return_home"
+        },
+        {
+          "text": "✨ \"Merge with you? Tell me more...\"",
+          "next_scene": "crown_merge_explained"
+        },
+        {
+          "text": "🤔 \"Can I speak to the Shadow King first?\"",
+          "next_scene": "shadow_king_meeting",
+          "requirements": {"flag_not_set": "killed_general"}
+        }
+      ],
+      "effects": {"set_flag": {"reached_crown": true}}
+    },
+    {
+      "id": "shadow_king_meeting",
+      "title": "🌑 Meeting the Shadow King",
+      "description": "As if summoned, darkness coalesces beside you—and **the Shadow King** appears.\n\nHe's not what you expected. Not a monster, but a man—weary, sad, with eyes that have seen too much.\n\n\"You wished to speak?\" he asks. His voice is gentle, not threatening.\n\n\"I tried to be a hero once,\" he continues. \"Like you. I bore the Crown. I tried to create a perfect world.\"\n\n\"But I learned that perfection is the enemy of goodness. A world without darkness is a world without rest, without mystery, without perspective.\"\n\n\"I seek the Crown not to rule, but to undo my mistake. To restore the balance I disrupted.\"\n\n\"But perhaps... perhaps you can do what I could not. Perhaps you can find a third way—beyond light, beyond darkness. Balance.\"\n\n\"The Crown is yours, hero. Use it well.\"\n\n🌑 **The Shadow King bows and fades into shadow.**\n\nYou stand alone with the Crown, but now you understand.",
+      "choices": [
+        {
+          "text": "👑 \"I understand now. I accept the Crown.\"",
+          "next_scene": "ending_guardian",
+          "effects": {"set_flag": {"king_accepted": true}, "morality_change": 15}
+        },
+        {
+          "text": "🤝 \"Rule together with me. We can be balance.\"",
+          "next_scene": "ending_co_rulers",
+          "effects": {"set_flag": {"co_rulers": true}, "morality_change": 20}
+        }
+      ],
+      "effects": {"set_flag": {"met_king": true}, "knowledge_gain": 50}
+    },
+    {
+      "id": "ending_guardian",
+      "title": "👑 The New Guardian",
+      "description": "You reach out and take the Crown.\n\n**FLASH OF LIGHT!**\n\nPower surges through you—not just power, but **understanding**. You see everything: the flow of energy between light and dark, the delicate balance that maintains existence, the countless lives depending on your wisdom.\n\nYou are no longer just a hero. You are a **Guardian of Balance**.\n\n🌟 **ENDING: THE GUARDIAN** 🌟\n\nYou spend eternity maintaining the harmony between light and dark. It's not an easy task—sometimes you must make difficult choices.\n\nBut you are ready. You have learned, grown, and proven yourself worthy.\n\n**The kingdom enters a new age of peace and prosperity.**\n\n**Songs are sung of your deeds for generations.**\n\n**You have become legend.**\n\n🌟 **THE END - GUARDIAN ENDING** 🌟\n\n(Your morality determined this ending. High morality = noble guardian)",
+      "choices": [
+        {"text": "🔄 Play Again", "next_scene": "start"}
+      ],
+      "effects": {"add_achievement": "👑 Guardian of Balance"}
+    },
+    {
+      "id": "ending_co_rulers",
+      "title": "🌗 The Age of Balance",
+      "description": "The Shadow King's eyes widen in surprise.\n\n\"Together? But... we are opposites. Light and dark cannot coexist.\"\n\n\"They must,\" you reply. \"That's the point. Balance isn't about one defeating the other. It's about both existing in harmony.\"\n\nFor the first time in millennia, the Shadow King smiles—a genuine smile.\n\n\"Yes. Yes, you're right. Together, we can be what neither could be alone.\"\n\n✨ **ENDING: THE AGE OF BALANCE** ✨\n\nYou and the Shadow King rule together—light and dark in perfect harmony. The kingdom enters an unprecedented golden age.\n\nYou are known as the **Twin Monarchs**—the rulers who ended the eternal conflict.\n\nChildren tell stories of the Light Queen and Shadow King who showed the world that opposites need not be enemies.\n\n**You changed everything.**\n\n**You showed that balance is possible.**\n\n**You are legend.**\n\n🌗 **THE END - TRUE BALANCE ENDING** 🌗\n\n(Secret ending: Requires high morality and meeting the Shadow King)",
+      "choices": [
+        {"text": "🔄 Play Again", "next_scene": "start"}
+      ],
+      "effects": {"add_achievement": "🌗 True Balance", "set_flag": {"co_rulers": true}}
+    },
+    {
+      "id": "ending_return_home",
+      "title": "🏠 The Return",
+      "description": "\"I'm not ready,\" you say. \"I need to grow.\"\n\nThe Crown pulses with what sounds like... approval?\n\n\"Wisdom,\" it says. \"You have learned the most important lesson: knowing your limitations.\"\n\n\"Return when you are ready. I will wait.\"\n\nThe Crown fades from view, but you feel it will always be there, waiting.\n\n🌊 **ENDING: THE RETURN** 🌊\n\nYou descend the mountain and return to your old life. But you are changed—wiser, kinder, more aware of the balance in all things.\n\nYou live a good life. You help others. You share what you learned. You become a beloved member of your community.\n\nAnd sometimes, late at night, you look up at Starlight Peak and know that one day—when you're ready—you will climb it again.\n\n**Perhaps that's the greatest wisdom of all: knowing when to say 'not yet.'**\n\n🌊 **THE END - RETURN ENDING** 🌊\n\n(Humility ending: Requires rejecting the Crown)",
+      "choices": [
+        {"text": "🔄 Play Again", "next_scene": "start"}
+      ],
+      "effects": {"add_achievement": "🤔 The Wisdom of Humility"}
+    },
+    {
+      "id": "crown_merge_explained",
+      "title": "✨ The Merge",
+      "description": "\"To merge,\" the Crown explains, \"is to become something beyond mortal. Beyond light, beyond dark. Pure existence.\" \"You would become like **Orion**—a being of pure energy, existing outside of time, watching over the balance for eternity.\" \"You would lose your mortality—your ability to grow, to change, to surprise yourself. In exchange, you would gain cosmic awareness.\" \"You would see all of time and space at once. You would be everything and everyone.\" \"But you would also be... alone. No one could truly understand you anymore.\" \"This is the choice I offer: mortality or eternity. Growth or perfection. What do you choose?**\"",
+      "choices": [
+        {
+          "text": "✨ \"I choose to merge. Show me eternity.\"",
+          "next_scene": "ending_eternal",
+          "effects": {"set_flag": {"chose_eternity": true}}
+        },
+        {
+          "text": "🚶 \"No. I choose mortality. Growth matters more than perfection.\"",
+          "next_scene": "ending_guardian",
+          "effects": {"set_flag": {"chose_mortality": true}, "morality_change": 10}
+        }
+      ]
+    },
+    {
+      "id": "ending_eternal",
+      "title": "∞ Eternal Wanderer ∞",
+      "description": "You reach out and touch the Crown...\n\n**EXPLOSION OF LIGHT!**\n\nYour body dissolves. Your form fades. You become... **everything**.\n\nYou are the stars. You are the void. You are time itself. You are every moment that ever was and ever will be.\n\n∞ **ENDING: THE ETERNAL WANDERER** ∞\n\nYou exist beyond time now, watching the universe unfold in infinite variations. You see heroes rise and fall, kingdoms bloom and wither, balance achieved and broken across countless worlds.\n\nYou are alone—but never lonely. You are the universe experiencing itself.\n\nSometimes, you visit your old friends. Felix, now long dead. Elara, whose descendants still tell stories of the mysterious healer she once met.\n\nYou watch over them all, eternal guardian of the balance.\n\n**You have become the story itself.**\n\n**You are everything.**\n\n**You are eternal.**\n\n∞ **THE END - ETERNAL ENDING** ∞\n\n(Secret ending: Requires choosing to merge with the Crown)",
+      "choices": [
+        {"text": "🔄 Play Again", "next_scene": "start"}
+      ],
+      "effects": {"add_achievement": "∞ Eternal Wanderer", "set_flag": {"eternal": true}}
+    }
+  ]
+}
