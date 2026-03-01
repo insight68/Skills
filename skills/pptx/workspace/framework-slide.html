@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+html { background: #ffffff; }
+body {
+  width: 720pt; height: 405pt; margin: 0; padding: 0;
+  background: #ffffff; font-family: Arial, sans-serif;
+  display: flex; flex-direction: column;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 25pt 30pt;
+  box-sizing: border-box;
+}
+
+.framework {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8pt;
+}
+
+.layer {
+  display: flex;
+  align-items: center;
+  height: 55pt;
+  border-radius: 6pt;
+  position: relative;
+  overflow: hidden;
+}
+
+.layer-icon {
+  width: 50pt;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layer-icon p {
+  font-size: 20pt;
+  margin: 0;
+  color: rgba(255,255,255,0.9);
+}
+
+.layer-content {
+  flex: 1;
+  padding: 8pt 15pt;
+}
+
+.layer-name {
+  font-size: 16pt;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0 0 2pt 0;
+}
+
+.layer-desc {
+  font-size: 10pt;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+}
+
+.panel {
+  width: 160pt;
+  padding-left: 20pt;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.transformation {
+  background: #f8f9fa;
+  padding: 20pt;
+  border-radius: 8pt;
+  border-left: 5pt solid #4A90A4;
+}
+
+.transformation h3 {
+  font-size: 13pt;
+  color: #2C3E50;
+  margin: 0 0 15pt 0;
+}
+
+.transform-row {
+  margin: 12pt 0;
+}
+
+.transform-text {
+  font-size: 10pt;
+  color: #666;
+  margin: 0 0 4pt 0;
+}
+
+.arrow-text {
+  font-size: 14pt;
+  color: #4A90A4;
+  margin: 0;
+  text-align: center;
+}
+
+.highlight {
+  color: #4A90A4;
+  font-size: 11pt;
+  font-weight: bold;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="framework">
+    <!-- Strategy Layer -->
+    <div class="layer" style="background: #FFB833;">
+      <div class="layer-icon" style="background: #FF9500;">
+        <p>◆</p>
+      </div>
+      <div class="layer-content">
+        <p class="layer-name">战略层 Strategy</p>
+        <p class="layer-desc">顶层战略规划 | Top-level Strategic Planning</p>
+      </div>
+    </div>
+
+    <!-- Decision Layer -->
+    <div class="layer" style="background: #FF7A54;">
+      <div class="layer-icon" style="background: #FF5C3D;">
+        <p>◈</p>
+      </div>
+      <div class="layer-content">
+        <p class="layer-name">决策层 Decision Layer</p>
+        <p class="layer-desc">识别市场信号并决策 | Human+AI Collaboration</p>
+      </div>
+    </div>
+
+    <!-- Orchestration Layer -->
+    <div class="layer" style="background: #52A0B0;">
+      <div class="layer-icon" style="background: #428C9C;">
+        <p>▣</p>
+      </div>
+      <div class="layer-content">
+        <p class="layer-name">业务调度层 Business Orchestration</p>
+        <p class="layer-desc">调用基础技能或专家 | Skill Coordination</p>
+      </div>
+    </div>
+
+    <!-- Skills Layer -->
+    <div class="layer" style="background: #4DB7E2;">
+      <div class="layer-icon" style="background: #2E9FD4;">
+        <p>▢</p>
+      </div>
+      <div class="layer-content">
+        <p class="layer-name">基础技能库 Skill Library</p>
+        <p class="layer-desc">原子类型的武器库 | Atomic Capabilities</p>
+      </div>
+    </div>
+
+    <!-- Knowledge Layer -->
+    <div class="layer" style="background: #7560EB;">
+      <div class="layer-icon" style="background: #634AD3;">
+        <p>■</p>
+      </div>
+      <div class="layer-content">
+        <p class="layer-name">知识库 Knowledge Base</p>
+        <p class="layer-desc">历史数据和知识的沉淀 | Historical Data</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="transformation">
+      <h3>管理变革</h3>
+
+      <div class="transform-row">
+        <p class="transform-text" style="text-align: center;">人指挥人</p>
+        <p class="arrow-text">→ → →</p>
+        <p class="highlight" style="text-align: center; margin-top: 4pt;">AI辅助决策</p>
+      </div>
+
+      <div class="transform-row">
+        <p class="arrow-text">↓ ↓ ↓</p>
+      </div>
+
+      <div class="transform-row">
+        <p class="highlight" style="text-align: center;">指挥专家</p>
+      </div>
+
+      <p style="font-size: 9pt; color: #7f8c8d; margin: 15pt 0 0 0; line-height: 1.4;">
+        知识库与技能库管理从传统层级模式转向AI驱动的智能决策系统
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
